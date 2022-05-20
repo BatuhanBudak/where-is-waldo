@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import locNar from '../assets/the-loc-nar.jpg'
+import ItemToFindList from './ItemToFindList'
 
 export default function StartDialogue({imageList}) {
   return (
@@ -9,8 +10,11 @@ export default function StartDialogue({imageList}) {
       <DialogueWrapper>
          <BackgroundBlock></BackgroundBlock>
          <InfoContainer>
-            <h2>{imageList.imageName}</h2>
-            <h4>{imageList.imageAuthor}</h4>
+            <ImageDetailContainer>
+                <ImageName>{imageList.imageName}</ImageName>
+                <ImageAuthor>by {imageList.imageAuthor}</ImageAuthor>
+            </ImageDetailContainer>
+            <ItemToFindList itemList = {imageList.itemList}/>
             <button>Start</button>
          </InfoContainer>
     </DialogueWrapper>
@@ -34,13 +38,33 @@ const BackgroundBlock = styled.div`
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 `
+
 const InfoContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 45%;
     background-color: white;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    padding-inline: 1rem;
+    font-family: 'Oswald', sans-serif;
+`
+const ImageDetailContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const ImageName = styled.h2`
+    font-weight: 500;
+    letter-spacing: 3px;
+    font-size: 2rem;
+`
+const ImageAuthor = styled.h2`
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-top: -.25em;
+    font-size: .875rem;
+    font-style:italic;
 `

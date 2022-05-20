@@ -1,4 +1,7 @@
 import locNar from './assets/the-loc-nar.jpg'
+import kelthuzad from './assets/kelthuzad.png'
+import spiderman from './assets/spiderman.png'
+import dragonborn from './assets/dragonborn.png'
 
 const imagesData = [
    {
@@ -14,28 +17,28 @@ const imagesData = [
     itemList: [
       // Easy
       {
-        id: 'bowser',
-        name: 'Bowser',
-        franchise: 'Super Mario Bros',
-        // image: bowser,
+        id: 'kel-thuzad',
+        name: 'Kel\'Thuzad',
+        franchise: 'Warcraft',
+        image: kelthuzad,
         difficulty: 'easy',
         found: false,
       },
-      // Medium
       {
-        id: 'yubaba',
-        name: 'Yubaba',
-        franchise: 'Spirited Away',
-        // image: yubaba,
+        id: 'dragonborn',
+        name: 'Dragonborn',
+        franchise: 'Skyrim',
+        image: dragonborn,
         difficulty: 'medium',
         found: false,
       },
+      // Medium
       // Hard
       {
-        id: 'the-knight',
-        name: 'The Knight',
-        franchise: 'Hollow Knight',
-        // image: theKnight,
+        id: 'spider-man',
+        name: 'Spiderman',
+        franchise: 'Marvel',
+        image: spiderman,
         difficulty: 'hard',
         found: false,
       },
