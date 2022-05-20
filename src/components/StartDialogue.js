@@ -56,7 +56,7 @@ const InfoContainer = styled.div`
     align-items:center;
     justify-content: space-evenly;
     width: 45%;
-    background: linear-gradient(to bottom, #E0EAFC, #CFDEF3);
+    background: linear-gradient(to bottom,#ECE9E6,#FFF);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     padding-inline: 1rem;

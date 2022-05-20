@@ -14,9 +14,9 @@ function ItemToFind({ item }) {
   const Difficulty = styled.p`
     margin-left: auto;
     color: ${({ difficulty }) => {
-      if (difficulty === "easy") return "#81bd81;";
-      else if (difficulty === "medium") return "#e2bb71;";
-      else if (difficulty === "hard") return "#e65a5a;";
+      if (difficulty === "easy") return "#067d06";
+      else if (difficulty === "medium") return "darkgoldenrod";
+      else if (difficulty === "hard") return "#e65a5a";
     }};
     font-weight:700;
   `;
