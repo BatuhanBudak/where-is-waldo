@@ -5,7 +5,7 @@ import locNar from '../assets/the-loc-nar.jpg'
 export default function StartDialogue({imageList}) {
   return (
       <>
-      <h1>Find <StyledSpan>Them</StyledSpan></h1>
+      <h1>Find <RedTitle>Them</RedTitle></h1>
       <DialogueWrapper>
          <BackgroundBlock></BackgroundBlock>
          <InfoContainer>
@@ -17,7 +17,7 @@ export default function StartDialogue({imageList}) {
     </>
   )
 }
-const StyledSpan = styled.span`
+const RedTitle = styled.span`
     color:red;
 `
 const DialogueWrapper = styled.div`
