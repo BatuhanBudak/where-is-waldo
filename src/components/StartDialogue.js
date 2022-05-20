@@ -6,7 +6,7 @@ import ItemToFindList from './ItemToFindList'
 export default function StartDialogue({imageList}) {
   return (
       <>
-      <StyledTitle>Find <RedTitle>Them</RedTitle></StyledTitle>
+      <StyledTitle>Find<RedTitle>Them</RedTitle></StyledTitle>
       <DialogueWrapper>
          <BackgroundBlock></BackgroundBlock>
          <InfoContainer>
@@ -25,12 +25,15 @@ const StyledTitle = styled.h1`
     font-family: 'Oswald';
     margin-bottom: 2rem;
     font-size: 3rem;
-    padding-block: 1rem;
+    letter-spacing: 8px;
+    padding-bottom: .3rem;
     border-bottom: 2px solid white;
     color: white;
 `
 const RedTitle = styled.span`
     color:red;
+    font-family: "Nova Mono";
+    font-size: 3.25rem;
 `
 const DialogueWrapper = styled.div`
     display: flex;
