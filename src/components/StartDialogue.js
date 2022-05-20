@@ -15,7 +15,7 @@ export default function StartDialogue({imageList}) {
                 <ImageAuthor>by {imageList.imageAuthor}</ImageAuthor>
             </ImageDetailContainer>
             <ItemToFindList itemList = {imageList.itemList}/>
-            <button>Start</button>
+            <StartButton>Start</StartButton>
          </InfoContainer>
     </DialogueWrapper>
     </>
@@ -45,7 +45,7 @@ const InfoContainer = styled.div`
     align-items:center;
     justify-content: space-evenly;
     width: 45%;
-    background-color: white;
+    background: linear-gradient(to bottom, #E0EAFC, #CFDEF3);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     padding-inline: 1rem;
@@ -67,4 +67,20 @@ const ImageAuthor = styled.h2`
     margin-top: -.25em;
     font-size: .875rem;
     font-style:italic;
+`
+const StartButton = styled.button`
+    font-family: inherit;
+    cursor: pointer;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: .3em 1.25em;
+    border: none;
+    border-radius: 1em;
+    color: #fff;
+    background: #2a2c80;
+    background: linear-gradient(to right,#ED213A,#93291E);
+    transition: transform .3s ease;
+    &:hover {
+        transform: scale(1.1);
+    }
 `

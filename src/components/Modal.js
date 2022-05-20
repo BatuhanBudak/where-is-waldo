@@ -14,5 +14,5 @@ const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(to bottom,#141E30, #243B55);
 `
