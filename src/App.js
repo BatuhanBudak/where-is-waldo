@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
-import style from './style.css'
+import './style.css'
 import imagesData from './imagesData'
 import Modal from './components/Modal'
 import useToggle from './hooks/useToggle'
 import StartDialogue from './components/StartDialogue';
 import EndDialogue from './components/EndDialogue';
+import Navbar from './components/Navbar'
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <div>
+    <Navbar imageList={imageList}/>
     {modalOpen && 
     <Modal>
       {modalMode === "start" ? 

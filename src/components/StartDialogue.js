@@ -91,7 +91,7 @@ const StartButton = styled.button`
     background: #2a2c80;
     background: linear-gradient(to right,#ED213A,#93291E);
     transition: transform .3s ease;
-    &:hover {
+    &:hover, &:focus {
         transform: scale(1.1);
     }
 `
