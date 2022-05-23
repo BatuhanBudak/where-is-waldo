@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useToggle from "./useToggle";
 
 export default function useContextMenu() {

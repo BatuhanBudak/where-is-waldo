@@ -1,4 +1,7 @@
-const CharactersContextMenu = ({ x, y, showMenu }) => {
+const CharactersContextMenu = ({ x, y, showMenu, itemList }) => {
+    //TODO FOUND PROP A GORE RENDER ET
+    //BUTTON CLICK FONKSİYONU YAZILACAK
+    //STYLELARI STYLED COMPONENT YAP
   const style = () => {
     return {
       height: 200,

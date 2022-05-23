@@ -9,7 +9,7 @@ export default function MainImage({ imageList }) {
   return (
     <StyledMain>
       <StyledImage src={imageList.imageUrl} alt={imageList.imageAuthor} ref={imageRef} onClick={(e ) => handleClick(e, imageRef) }/>
-      <CharactersContextMenu x={x} y={y} showMenu={showMenu} />
+      <CharactersContextMenu x={x} y={y} showMenu={showMenu} itemList= {imageList.itemList}/>
     </StyledMain>
   );
 }
