@@ -40,6 +40,7 @@ const CharactersContainer = styled.div`
   width: 100%;
   gap: 0.3rem;
   font-family: "Nova Mono", monospace;
+  padding: .5rem ;
 `;
 const CharacterInfo = styled.div`
   align-self: flex-start;

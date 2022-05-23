@@ -13,12 +13,11 @@ export default function DropDownMenu({ itemList }) {
 const DropDownMenuContainer = styled.div`
   position: absolute;
   top: 60px;
-  right: 15%;
   width: 20rem;
   transform: translateX(-45%);
   background-color: #17134d;
   color: #fff;
   border-radius: 0.5rem;
-  padding: 0.5rem 0;
+  padding: .5rem ;
   overflow: hidden;
 `;

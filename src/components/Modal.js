@@ -9,7 +9,7 @@ export default function Modal({children}) {
 const StyledModal = styled.div`
   position: fixed;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
