@@ -9,7 +9,7 @@ export default function ItemToFindList({ itemList }) {
   return <CharactersContainer>{items}</CharactersContainer>;
 }
 function ItemToFind({ item }) {
-  const { difficulty, image, imageName, name, franchise } = item;
+  const { difficulty, image, imageName, name, franchise, found } = item;
 
   const Difficulty = styled.p`
     margin-left: auto;
@@ -22,11 +22,11 @@ function ItemToFind({ item }) {
   `;
   return (
     <>
-      <Difficulty difficulty={difficulty}>{difficulty}</Difficulty>
+      <Difficulty difficulty={difficulty} >{difficulty}</Difficulty>
       <CharacterInfo>
-        <StyledImage src={image} alt={imageName} />
-        <CharacterDetail>
-          <CharacterName>{name}</CharacterName>
+        <StyledImage src={image} alt={imageName} found={found} />
+        <CharacterDetail found={found}>
+          <CharacterName >{name}</CharacterName>
           <CharacterFranchise>{franchise}</CharacterFranchise>
         </CharacterDetail>
       </CharacterInfo>
@@ -50,12 +50,28 @@ const CharacterInfo = styled.div`
   width: 100%;
 `;
 const StyledImage = styled.img`
+ filter: ${({found  }) => {
+      if(found) return "invert(50%)";
+      else{
+        return "invert(0)";
+      }
+    }};
   width: 100%;
   max-height: 5rem;
   max-width: 5.5rem;
   object-fit: cover;
 `;
 const CharacterDetail = styled.div`
+ filter: ${({found  }) => {
+      if(found) return "invert(50%)";
+      else{
+        return "invert(0)";
+      }
+    }};
+text-decoration: ${({found})=>{
+      return (found ? "line-through" : "none");
+    }};
+
   display: flex;
   flex-direction: column;
   align-items: center;

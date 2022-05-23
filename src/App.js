@@ -12,7 +12,7 @@ export default function App() {
   const [imageList, setImageList] = useState(imagesData[0]);
   const [modalOpen, toggleModalOpen] = useToggle(true);
   const [modalMode, setModalMode] = useState("start");
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(true);
 
 
 

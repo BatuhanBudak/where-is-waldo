@@ -22,7 +22,7 @@ const imagesData = [
         franchise: 'Warcraft',
         image: kelthuzad,
         difficulty: 'easy',
-        found: false,
+        found: true,
       },
       {
         id: 'dragonborn',
