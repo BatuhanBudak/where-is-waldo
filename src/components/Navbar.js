@@ -30,7 +30,7 @@ const NavBar = styled.nav`
   display: flex;
   align-items: center;
   top: 0;
-  height: 3.75rem;
+  height: 60px;
   background-color: grey;
   color: black;
   z-index: 10;
