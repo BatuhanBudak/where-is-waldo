@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import React from "react";
 
-export default function ItemToFind({ item, isContextMenuItem }) {
-    const { difficulty, image, imageName, name, franchise, found } = item;
+export default function ItemToFind({ item, isContextMenuItem, toggleCharacterFound, checkCoordsForCharacter }) {
+    const { difficulty, image, imageName, name, franchise, found, id } = item;
   
     const DifficultyLabel = styled.p`
       margin-left: auto;
@@ -16,11 +16,12 @@ export default function ItemToFind({ item, isContextMenuItem }) {
   
     if (isContextMenuItem) {
       return (
-        <ContextMenuListItem>
+        <ContextMenuListItem onClick = {() => checkCoordsForCharacter(id)} >
           <ContextMenuItemName>{name}</ContextMenuItemName>
         </ContextMenuListItem>
       );
     } else {
+        //Style is same for drowDownMenuItems and StartDialogue characters
       return (
         <DropDownMenuListItem>
           <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
@@ -38,6 +39,7 @@ export default function ItemToFind({ item, isContextMenuItem }) {
   
   const ContextMenuListItem = styled.li`
     padding: 0.5rem 0.8rem;
+    cursor: pointer;
   `;
   const ContextMenuItemName = styled.h3`
     font-size: 1rem;

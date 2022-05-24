@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import  ItemToFind from "./ItemToFind";
+import ItemToFind from "./ItemToFind";
 
 export default function ItemToFindList({
   itemList,
+  toggleCharacterFound,
+  checkCoordsForCharacter,
   isContextMenuItem = false,
   isDropDownMenuItem = false,
-  
   isStartDialogueItem = false,
 }) {
   const items = itemList.map((item) => (
@@ -19,16 +20,22 @@ export default function ItemToFindList({
         <ItemToFind
           key={item.id}
           item={item}
+          toggleCharacterFound= {toggleCharacterFound}
+          checkCoordsForCharacter= {checkCoordsForCharacter}
           isContextMenuItem={isContextMenuItem}
         />
       );
     });
   if (isContextMenuItem) {
-    return <ContextMenuCharactersContainer>{contextMenuItems}</ContextMenuCharactersContainer>;
+    return (
+      <ContextMenuCharactersContainer>
+        {contextMenuItems}
+      </ContextMenuCharactersContainer>
+    );
   } else if (isDropDownMenuItem) {
     return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
   } else if (isStartDialogueItem)
-   return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
+    return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
 }
 
 const ContextMenuCharactersContainer = styled.ul`
@@ -39,15 +46,16 @@ const ContextMenuCharactersContainer = styled.ul`
   padding: 0.5rem;
   margin: 0;
   list-style: none;
-  height: auto;
-  width: auto;
+  height: inherit;
+  width: inherit;
+  justify-content: space-around;
   border-radius: 10px;
-  background: linear-gradient(to bottom, #C9D6FF, #E2E2E2);
+  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
   color: black;
   align-items: flex-start;
 `;
-const GenericCharactersContainer =styled(ContextMenuCharactersContainer)`
+const GenericCharactersContainer = styled(ContextMenuCharactersContainer)`
   background: none;
   width: 100%;
   color: white;
-`
+`;

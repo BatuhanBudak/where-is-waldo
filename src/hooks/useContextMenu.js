@@ -5,12 +5,12 @@ export default function useContextMenu() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [showMenu, setShowMenu] = useToggle();
-  const MENUHEIGHT = 200;
+  const MENUHEIGHT = 150;
   const MENUWIDTH = 150;
   const NAVBARHEIGHT = 60;
   const OFFSET = 30;
 
-  const handleClick = (e, imageRef) => {
+  const handleMainImageClick = (e, imageRef) => {
     console.log(e.pageX, e.pageY);
     console.log(window.innerWidth, window.innerHeight );
     e.preventDefault();
@@ -26,5 +26,5 @@ export default function useContextMenu() {
       setShowMenu();
     }
   };
-  return { x, y, showMenu, handleClick };
+  return { x, y, showMenu, handleMainImageClick,setShowMenu };
 }
