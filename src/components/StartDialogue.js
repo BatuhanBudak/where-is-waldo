@@ -14,7 +14,7 @@ export default function StartDialogue({imageList}) {
                 <ImageName>{imageList.imageName}</ImageName>
                 <ImageAuthor>by {imageList.imageAuthor}</ImageAuthor>
             </ImageDetailContainer>
-            <ItemToFindList itemList = {imageList.itemList}/>
+            <ItemToFindList itemList = {imageList.itemList} isStartDialogueItem={true}/>
             <StartButton>Start</StartButton>
          </InfoContainer>
     </DialogueWrapper>

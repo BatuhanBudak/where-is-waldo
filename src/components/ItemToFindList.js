@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { ItemToFind } from "./ItemToFind";
+import  ItemToFind from "./ItemToFind";
 
 export default function ItemToFindList({
   itemList,
   isContextMenuItem = false,
+  isDropDownMenuItem = false,
+  
+  isStartDialogueItem = false,
 }) {
   const items = itemList.map((item) => (
     <ItemToFind key={item.id} item={item} />
@@ -20,18 +23,17 @@ export default function ItemToFindList({
         />
       );
     });
-
-  return (
-    <CharactersContainer>
-      {isContextMenuItem ? contextMenuItems : items}
-    </CharactersContainer>
-  );
+  if (isContextMenuItem) {
+    return <ContextMenuCharactersContainer>{contextMenuItems}</ContextMenuCharactersContainer>;
+  } else if (isDropDownMenuItem) {
+    return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
+  } else if (isStartDialogueItem)
+   return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
 }
 
-const CharactersContainer = styled.ul`
+const ContextMenuCharactersContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 0.3rem;
   font-family: "Nova Mono", monospace;
   padding: 0.5rem;
@@ -40,8 +42,12 @@ const CharactersContainer = styled.ul`
   height: auto;
   width: auto;
   border-radius: 10px;
-  background-color: #17134d;
+  background: linear-gradient(to bottom, #C9D6FF, #E2E2E2);
   color: black;
-  flex-direction: column;
   align-items: flex-start;
 `;
+const GenericCharactersContainer =styled(ContextMenuCharactersContainer)`
+  background: none;
+  width: 100%;
+  color: white;
+`

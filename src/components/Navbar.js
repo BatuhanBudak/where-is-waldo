@@ -17,7 +17,7 @@ export default function Navbar({imageList, isGameOver}) {
         </StyledListItem>
         <StyledListItem><Timer isGameOver={isGameOver}/></StyledListItem>
         <ItemsToFind>
-          <DropDownMenuButton onClick={setDropDownOpen}>{numberOfItemsToFind}</DropDownMenuButton>
+          <DropDownMenuToggleButton onClick={setDropDownOpen}>{numberOfItemsToFind}</DropDownMenuToggleButton>
           {dropDownOpen && <DropDownMenu itemList = {imageList.itemList}/> }
         </ItemsToFind>
       </NavbarList>
@@ -63,7 +63,7 @@ const ItemsToFind = styled.li`
   justify-content: center;
   align-items: center;
 `;
-const DropDownMenuButton = styled.button`
+const DropDownMenuToggleButton = styled.button`
   width: 2.625rem;
   height: 2.625rem;
   background-color: darkorange;

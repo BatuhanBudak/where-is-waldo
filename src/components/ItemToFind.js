@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from "react";
 
-export function ItemToFind({ item, isContextMenuItem }) {
+export default function ItemToFind({ item, isContextMenuItem }) {
     const { difficulty, image, imageName, name, franchise, found } = item;
   
     const DifficultyLabel = styled.p`
@@ -16,13 +16,13 @@ export function ItemToFind({ item, isContextMenuItem }) {
   
     if (isContextMenuItem) {
       return (
-        <StyledListItem>
+        <ContextMenuListItem>
           <ContextMenuItemName>{name}</ContextMenuItemName>
-        </StyledListItem>
+        </ContextMenuListItem>
       );
     } else {
       return (
-        <li>
+        <DropDownMenuListItem>
           <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
           <CharacterInfo>
             <StyledImage src={image} alt={imageName} found={found} />
@@ -31,19 +31,25 @@ export function ItemToFind({ item, isContextMenuItem }) {
               <CharacterFranchise>{franchise}</CharacterFranchise>
             </CharacterDetail>
           </CharacterInfo>
-        </li>
+        </DropDownMenuListItem>
       );
     }
   }
   
-  const StyledListItem = styled.li`
+  const ContextMenuListItem = styled.li`
     padding: 0.5rem 0.8rem;
   `;
   const ContextMenuItemName = styled.h3`
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
   `;
   
+  const DropDownMenuListItem = styled.li`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  `
+
   const CharacterInfo = styled.div`
     align-self: flex-start;
     display: flex;
