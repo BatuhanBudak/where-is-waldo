@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import "./style.css";
 import imagesData from "./imagesData";
 import Modal from "./components/Modal";
@@ -22,15 +23,18 @@ export default function App() {
         } else {
           return item;
         }
-      })
+      });
       return { ...image, itemList: newItemList };
-    })
+    });
   };
 
   return (
-    <div>
+    <StyledDiv>
       <Navbar imageList={imageList} isGameOver={isGameOver} />
-      <MainImage imageList={imageList} toggleCharacterFound={toggleCharacterFound} />
+      <MainImage
+        imageList={imageList}
+        toggleCharacterFound={toggleCharacterFound}
+      />
       {modalOpen && (
         <Modal>
           {modalMode === "start" ? (
@@ -40,6 +44,9 @@ export default function App() {
           )}
         </Modal>
       )}
-    </div>
+    </StyledDiv>
   );
 }
+const StyledDiv = styled.div`
+  overflow: hidden;
+`;

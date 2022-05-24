@@ -23,6 +23,7 @@ const imagesData = [
         image: kelthuzad,
         difficulty: 'easy',
         found: true,
+        
       },
       {
         id: 'dragonborn',
@@ -31,6 +32,12 @@ const imagesData = [
         image: dragonborn,
         difficulty: 'medium',
         found: false,
+        coords: {
+          //Normalized by width: 1920 height: 8085
+          //Offset by +.4
+          charX : [0.28, 0.35],
+          charY : [0.77, 0.82]
+        }
       },
       // Medium
       // Hard

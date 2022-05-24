@@ -11,8 +11,8 @@ export default function useContextMenu() {
   const OFFSET = 30;
 
   const handleMainImageClick = (e, imageRef) => {
-    console.log(e.pageX, e.pageY);
-    console.log(window.innerWidth, window.innerHeight );
+    
+    console.log( );
     e.preventDefault();
     if(showMenu){
         setShowMenu();
@@ -22,8 +22,9 @@ export default function useContextMenu() {
       : setX(Number(e.pageX));
     e.pageY + (MENUHEIGHT - NAVBARHEIGHT) > imageRef.current.offsetHeight
       ? setY(Number(`${e.pageY  - (MENUHEIGHT + OFFSET + NAVBARHEIGHT)}`))
-      : setY(Number(e.pageY - NAVBARHEIGHT) );
+      : setY(Number(e.pageY) );
       setShowMenu();
+      console.log(e.pageX, e.pageY);
     }
   };
   return { x, y, showMenu, handleMainImageClick,setShowMenu };
