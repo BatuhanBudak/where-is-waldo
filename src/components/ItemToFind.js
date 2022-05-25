@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from "react";
 
-export default function ItemToFind({ item, isContextMenuItem, toggleCharacterFound, checkCoordsForCharacter }) {
+export default function ItemToFind({ item, isContextMenuItem, checkCoordsForCharacter }) {
     const { difficulty, image, imageName, name, franchise, found, id } = item;
   
     const DifficultyLabel = styled.p`
@@ -40,6 +40,10 @@ export default function ItemToFind({ item, isContextMenuItem, toggleCharacterFou
   const ContextMenuListItem = styled.li`
     padding: 0.5rem 0.8rem;
     cursor: pointer;
+    opacity: .7;
+    &:hover,&:focus{
+      opacity: 1;
+    }
   `;
   const ContextMenuItemName = styled.h3`
     font-size: 1rem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef} from "react";
 import styled from "styled-components";
 import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
@@ -7,17 +7,17 @@ import Timer from "./Timer";
 export default function Navbar({imageList, isGameOver}) {
 
     const [dropDownOpen, setDropDownOpen] = useToggle();
-    const numberOfItemsToFind = imageList.itemList.filter(item => !item.found).length;
+    const numberOfCharsToFind = imageList.itemList.filter(item => !item.found).length;
 
   return (
-    <NavBar>
-      <NavbarList>
+    <NavBar >
+      <NavbarList >
         <StyledListItem>
           Find<RedListItem>Them</RedListItem>
         </StyledListItem>
         <StyledListItem><Timer isGameOver={isGameOver}/></StyledListItem>
         <ItemsToFind>
-          <DropDownMenuToggleButton onClick={setDropDownOpen}>{numberOfItemsToFind}</DropDownMenuToggleButton>
+          <DropDownMenuToggleButton onClick={setDropDownOpen}>{numberOfCharsToFind}</DropDownMenuToggleButton>
           {dropDownOpen && <DropDownMenu itemList = {imageList.itemList}/> }
         </ItemsToFind>
       </NavbarList>

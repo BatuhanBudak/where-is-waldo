@@ -4,7 +4,6 @@ import ItemToFind from "./ItemToFind";
 
 export default function ItemToFindList({
   itemList,
-  toggleCharacterFound,
   checkCoordsForCharacter,
   isContextMenuItem = false,
   isDropDownMenuItem = false,
@@ -20,7 +19,6 @@ export default function ItemToFindList({
         <ItemToFind
           key={item.id}
           item={item}
-          toggleCharacterFound= {toggleCharacterFound}
           checkCoordsForCharacter= {checkCoordsForCharacter}
           isContextMenuItem={isContextMenuItem}
         />
@@ -28,33 +26,30 @@ export default function ItemToFindList({
     });
   if (isContextMenuItem) {
     return (
-      <ContextMenuCharactersContainer>
+      <ContextMenuCharactersList>
         {contextMenuItems}
-      </ContextMenuCharactersContainer>
+      </ContextMenuCharactersList>
     );
   } else if (isDropDownMenuItem) {
-    return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
+    return <GenericCharactersList>{items}</GenericCharactersList>;
   } else if (isStartDialogueItem)
-    return <GenericCharactersContainer>{items}</GenericCharactersContainer>;
+    return <GenericCharactersList>{items}</GenericCharactersList>;
 }
 
-const ContextMenuCharactersContainer = styled.ul`
+const ContextMenuCharactersList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
   font-family: "Nova Mono", monospace;
-  padding: 0.5rem;
+  padding: 0;
   margin: 0;
   list-style: none;
-  height: inherit;
-  width: inherit;
-  justify-content: space-around;
+ justify-content: space-around;
   border-radius: 10px;
   background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
   color: black;
   align-items: flex-start;
 `;
-const GenericCharactersContainer = styled(ContextMenuCharactersContainer)`
+const GenericCharactersList = styled(ContextMenuCharactersList)`
   background: none;
   width: 100%;
   color: white;

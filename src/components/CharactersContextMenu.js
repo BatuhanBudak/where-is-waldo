@@ -18,8 +18,10 @@ const CharactersContextMenu = ({
     left: ${({ x }) => x + "px"};
     position: absolute;
     display: ${({ showMenu }) => (showMenu ? "block" : "none")};
-    width: 150px;
-    height: 150px;
+    width: max-content;
+    height: auto;
+    max-width:150px;
+    max-height: 150px;
   `;
 
   return (

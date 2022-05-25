@@ -2,10 +2,14 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import CharactersContextMenu from "./CharactersContextMenu";
 import useContextMenu from "../hooks/useContextMenu";
+import Snackbar from "./Snackbar";
+import useTimedToggle from "../hooks/useTimedToggle";
+import useSnackbar from "../hooks/useSnackbar";
 
 export default function MainImage({ imageList, toggleCharacterFound }) {
   const { x, y, showMenu, setShowMenu, handleMainImageClick } =
     useContextMenu();
+  const [snackbarOpen, setSnackbarOpen,name, setName, found, setFound] = useSnackbar();
   const imageRef = useRef(null);
 
   const checkCoordsForCharacter = (id) => {
@@ -14,10 +18,17 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     if (isCoordsInRange(coordinates)) {
       toggleCharacterFound(id);
       setShowMenu();
+      const characterName = getCharacterName(id);;
+      setName(characterName);
+      setFound(true);
+      setSnackbarOpen(true);
     } else {
       setShowMenu();
+      setFound(false);
+      setSnackbarOpen(true);
     }
   };
+
   const getCharacterCoords = (id) => {
     const characterArr = imageList.itemList.filter((item) => item.id === id);
     const character = { ...characterArr[0] };
@@ -26,12 +37,18 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     const [minY, maxY] = charY;
     return {minX, maxX, minY, maxY}
   };
+
   const isCoordsInRange = ({minX, maxX, minY, maxY}) => {
     const imageWidth = Number(imageRef.current.getBoundingClientRect().width.toFixed(2));
     const imageHeight = Number(imageRef.current.getBoundingClientRect().height.toFixed(2));
     //Check if the coords are in range 
     return minX * imageWidth <= x && x <= maxX * imageWidth && minY * imageHeight <= y && y <= maxY * imageHeight;
   };
+
+  const getCharacterName = (id) => {
+    const character = imageList.itemList.filter((item) => item.id === id);
+    return {...character[0]}.name;
+  }
 
   return (
     <StyledMain>
@@ -47,8 +64,8 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
         showMenu={showMenu}
         itemList={imageList.itemList}
         checkCoordsForCharacter={checkCoordsForCharacter}
-        toggleCharacterFound={toggleCharacterFound}
       />
+      {snackbarOpen && <Snackbar name = {name} found = {found}/>}
     </StyledMain>
   );
 }
