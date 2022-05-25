@@ -23,7 +23,12 @@ const imagesData = [
         image: kelthuzad,
         difficulty: 'easy',
         found: false,
-        
+        coords: {
+          //Normalized by width: 1920 height: 8085
+          //Offset by +.04
+          charX : [0.61, 0.72],
+          charY : [0.81, 0.86]
+        }
       },
       {
         id: 'dragonborn',
@@ -34,7 +39,7 @@ const imagesData = [
         found: false,
         coords: {
           //Normalized by width: 1920 height: 8085
-          //Offset by +.4
+          //Offset by +.04
           charX : [0.28, 0.35],
           charY : [0.77, 0.82]
         }
@@ -48,6 +53,12 @@ const imagesData = [
         image: spiderman,
         difficulty: 'hard',
         found: false,
+        coords: {
+          //Normalized by width: 1920 height: 8085
+          //Offset by +.04
+          charX : [0.60, 0.68],
+          charY : [0.91, 0.96]
+        }
       },
     ],
   },

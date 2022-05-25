@@ -1,24 +1,29 @@
-import React,{useRef} from "react";
+import React from "react";
 import styled from "styled-components";
 import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
 import Timer from "./Timer";
 
-export default function Navbar({imageList, isGameOver}) {
-
-    const [dropDownOpen, setDropDownOpen] = useToggle();
-    const numberOfCharsToFind = imageList.itemList.filter(item => !item.found).length;
+export default function Navbar({ imageList, isGameOver }) {
+  const [dropDownOpen, setDropDownOpen] = useToggle();
+  const numberOfCharsToFind = imageList.itemList.filter(
+    (item) => !item.found
+  ).length;
 
   return (
-    <NavBar >
-      <NavbarList >
+    <NavBar>
+      <NavbarList>
         <StyledListItem>
-          Find<RedListItem>Them</RedListItem>
+          Where<RedListItem>Are</RedListItem>They?
         </StyledListItem>
-        <StyledListItem><Timer isGameOver={isGameOver}/></StyledListItem>
+        <StyledListItem>
+          <Timer isGameOver={isGameOver} />
+        </StyledListItem>
         <ItemsToFind>
-          <DropDownMenuToggleButton onClick={setDropDownOpen}>{numberOfCharsToFind}</DropDownMenuToggleButton>
-          {dropDownOpen && <DropDownMenu itemList = {imageList.itemList}/> }
+          <DropDownMenuToggleButton onClick={setDropDownOpen}>
+            {numberOfCharsToFind}
+          </DropDownMenuToggleButton>
+          {dropDownOpen && <DropDownMenu itemList={imageList.itemList} />}
         </ItemsToFind>
       </NavbarList>
     </NavBar>
@@ -31,7 +36,7 @@ const NavBar = styled.nav`
   align-items: center;
   top: 0;
   height: 60px;
-  background-color: grey;
+  background: linear-gradient(to bottom, #141e30, #243b55);
   color: black;
   z-index: 10;
   width: 100%;
@@ -66,7 +71,7 @@ const ItemsToFind = styled.li`
 const DropDownMenuToggleButton = styled.button`
   width: 2.625rem;
   height: 2.625rem;
-  background-color: darkorange;
+  background-color: rgb(226,124,0);
   cursor: pointer;
   color: white;
   border-radius: 50%;
@@ -75,7 +80,8 @@ const DropDownMenuToggleButton = styled.button`
   font-size: 1.6rem;
   font-weight: 700;
   transition: background-color 0.3s ease;
-  &:hover, &:focus{
-    background-color: rgb(226, 124, 0);
+  &:hover,
+  &:focus {
+    background-color: #e59400;
   }
 `;
