@@ -14,7 +14,6 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
   const imageRef = useRef(null);
   const [getCoordsForCharacter] = useFirebase();
 
-
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
     const { imageWidth, imageHeight } = getImageSize();
     //Check if the coords are in range
@@ -50,8 +49,8 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     setFound(true);
     setSnackbarOpen(true);
   }
-  
-  async function checkCoordsForCharacter(id){
+
+  async function checkCoordsForCharacter(id) {
     const coordinates = await getCoordsForCharacter(id);
 
     if (isCoordsInRange(coordinates)) {
@@ -59,7 +58,7 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     } else {
       handleCharacterNotFound();
     }
-  };
+  }
   const getCharacterName = (id) => {
     const character = imageList.itemList.filter((item) => item.id === id);
     return { ...character[0] }.name;

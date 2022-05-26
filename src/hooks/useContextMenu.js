@@ -15,7 +15,6 @@ export default function useContextMenu() {
     if (showMenu) {
       setShowMenu();
     } else {
-      console.log(e.pageX, e.pageY);
       e.pageX + MAXMENUWIDTH > imageRef.current.offsetWidth
         ? setX(Number(`${e.pageX - (MAXMENUWIDTH + OFFSET)}`))
         : setX(Number(e.pageX));
