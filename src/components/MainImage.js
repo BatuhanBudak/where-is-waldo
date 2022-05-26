@@ -4,6 +4,7 @@ import CharactersContextMenu from "./CharactersContextMenu";
 import useContextMenu from "../hooks/useContextMenu";
 import Snackbar from "./Snackbar";
 import useSnackbar from "../hooks/useSnackbar";
+import useFirebase from "../hooks/useFirebase";
 
 export default function MainImage({ imageList, toggleCharacterFound }) {
   const { x, y, showMenu, setShowMenu, handleMainImageClick } =
@@ -11,24 +12,11 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
   const [snackbarOpen, setSnackbarOpen, name, setName, found, setFound] =
     useSnackbar();
   const imageRef = useRef(null);
+  const [getCoordsForCharacter] = useFirebase();
 
-
-  const getCharacterCoords = (id) => {
-    const characterArr = imageList.itemList.filter((item) => item.id === id);
-    const character = { ...characterArr[0] };
-    const { charX, charY } = character.coords;
-    const [minX, maxX] = charX;
-    const [minY, maxY] = charY;
-    return { minX, maxX, minY, maxY };
-  };
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
-    const imageWidth = Number(
-      imageRef.current.getBoundingClientRect().width.toFixed(2)
-    );
-    const imageHeight = Number(
-      imageRef.current.getBoundingClientRect().height.toFixed(2)
-    );
+    const { imageWidth, imageHeight } = getImageSize();
     //Check if the coords are in range
     return (
       minX * imageWidth <= x &&
@@ -37,6 +25,16 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
       y <= maxY * imageHeight
     );
   };
+
+  function getImageSize() {
+    const imageWidth = Number(
+      imageRef.current.getBoundingClientRect().width.toFixed(2)
+    );
+    const imageHeight = Number(
+      imageRef.current.getBoundingClientRect().height.toFixed(2)
+    );
+    return { imageWidth, imageHeight };
+  }
 
   function handleCharacterNotFound() {
     setShowMenu();
@@ -53,8 +51,8 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     setSnackbarOpen(true);
   }
   
-  const checkCoordsForCharacter = (id) => {
-    const coordinates = getCharacterCoords(id);
+  async function checkCoordsForCharacter(id){
+    const coordinates = await getCoordsForCharacter(id);
 
     if (isCoordsInRange(coordinates)) {
       handleCharacterFound(id);

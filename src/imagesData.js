@@ -47,7 +47,7 @@ const imagesData = [
       // Medium
       // Hard
       {
-        id: 'spider-man',
+        id: 'spiderman',
         name: 'Spiderman',
         franchise: 'Marvel',
         image: spiderman,
