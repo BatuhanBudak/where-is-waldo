@@ -5,6 +5,7 @@ import useContextMenu from "../hooks/useContextMenu";
 import Snackbar from "./Snackbar";
 import useSnackbar from "../hooks/useSnackbar";
 import useFirebase from "../hooks/useFirebase";
+import useGameController from "../hooks/useGameController";
 
 export default function MainImage({ imageList, toggleCharacterFound }) {
   const { x, y, showMenu, setShowMenu, handleMainImageClick } =
@@ -13,6 +14,7 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
     useSnackbar();
   const imageRef = useRef(null);
   const [getCoordsForCharacter] = useFirebase();
+  const {foundItemsCount,setFoundItemsCount} = useGameController();
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
     const { imageWidth, imageHeight } = getImageSize();
@@ -43,6 +45,7 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
 
   function handleCharacterFound(id) {
     toggleCharacterFound(id);
+    setFoundItemsCount(foundItemsCount + 1 );
     setShowMenu();
     const characterName = getCharacterName(id);
     setName(characterName);

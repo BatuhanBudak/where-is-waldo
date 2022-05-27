@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import "./style.css";
-import imagesData from "./imagesData";
 import Modal from "./components/Modal";
-import useToggle from "./hooks/useToggle";
 import StartDialogue from "./components/StartDialogue";
 import EndDialogue from "./components/EndDialogue";
 import Navbar from "./components/Navbar";
 import MainImage from "./components/MainImage";
-
+import useGameController from "./hooks/useGameController";
 export default function App() {
-  const [imageList, setImageList] = useState(imagesData[0]);
-  const [modalOpen, toggleModalOpen] = useToggle(true);
-  const [modalMode, setModalMode] = useState("start");
-  const [isGameOver, setIsGameOver] = useState(true);
+  
+  const {imageList,setImageList, modalOpen, modalMode, isGameOver} = useGameController();
 
   const toggleCharacterFound = (id) => {
     setImageList((image) => {

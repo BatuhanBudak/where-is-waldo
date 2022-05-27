@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import locNar from '../assets/the-loc-nar.jpg'
+import useGameController from '../hooks/useGameController'
 import ItemToFindList from './ItemToFindList'
 
 export default function StartDialogue({imageList}) {
+    const {startGame} = useGameController();
   return (
       <>
       <StyledTitle>Find<RedTitle>Them</RedTitle></StyledTitle>
@@ -15,7 +17,7 @@ export default function StartDialogue({imageList}) {
                 <ImageAuthor>by {imageList.imageAuthor}</ImageAuthor>
             </ImageDetailContainer>
             <ItemToFindList itemList = {imageList.itemList} isStartDialogueItem={true}/>
-            <StartButton>Start</StartButton>
+            <StartButton onClick={startGame}>Start</StartButton>
          </InfoContainer>
     </DialogueWrapper>
     </>
