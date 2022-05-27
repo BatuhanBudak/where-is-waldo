@@ -52,5 +52,5 @@ const ContextMenuCharactersList = styled.ul`
 const GenericCharactersList = styled(ContextMenuCharactersList)`
   background: none;
   width: 100%;
-  color: white;
+  color: black;
 `;

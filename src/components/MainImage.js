@@ -13,7 +13,7 @@ export default function MainImage({ imageList, toggleCharacterFound }) {
   const [snackbarOpen, setSnackbarOpen, name, setName, found, setFound] =
     useSnackbar();
   const imageRef = useRef(null);
-  const [getCoordsForCharacter] = useFirebase();
+  const {getCoordsForCharacter} = useFirebase();
   const {foundItemsCount,setFoundItemsCount} = useGameController();
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
