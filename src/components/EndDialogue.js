@@ -2,36 +2,24 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import useFirebase from '../hooks/useFirebase';
 import useGameController from '../hooks/useGameController';
-
+import ScoreInput from './ScoreInput';
 export default function EndDialogue() {
-  const [name, setName] = useState();
+  
   const [showHighScoreScreen, setShowHighScoreScreen] = useState(true);
   const {gameWon, isHighScore} = useGameController();
-  const {submitScore} = useFirebase();
-
-  function submitForm(){
-    setShowHighScoreScreen(false)
-  }
+  
 
 
   //TODO highscore component
   //GAME WON VEYA LOST TIME'A GORE
-  if(gameWon && isHighScore && showHighScoreScreen){
+  if(gameWon && isHighScore){
     
     return(
-      <DialogueWrapper >
+      <DialogueWrapper showHighScoreScreen={showHighScoreScreen} setShowHighScoreScreen={setShowHighScoreScreen}>
       <h2>Misson Complete!</h2>
-      <h3>You did great! Show your success to others!</h3>
-      <form onSubmit={submitForm}>
-        <input
-        type="text"
-        name="name"
-        required
-        placeholder='name'
-        value={name}
-        onChange = {e => setName(e.target.value)} />
-        <button type="submit">Submit</button>
-      </form>
+      <ScoreInput />
+      
+     
     </DialogueWrapper>
     )
   }else if(gameWon && isHighScore && !showHighScoreScreen){
