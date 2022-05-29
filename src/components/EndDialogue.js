@@ -1,41 +1,27 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
-import useFirebase from '../hooks/useFirebase';
-import useGameController from '../hooks/useGameController';
-import ScoreInput from './ScoreInput';
+import React, { useState } from "react";
+import styled from "styled-components";
+import useGameController from "../hooks/useGameController";
+import useHighScoreMenu from "../hooks/useHighScoreMenu";
+import ScoreInput from "./ScoreForm";
+import ScoresList from "./ScoresList";
 export default function EndDialogue() {
-  
-  const [showHighScoreScreen, setShowHighScoreScreen] = useState(true);
-  const {gameWon, isHighScore} = useGameController();
-  
-
+  const { gameWon } = useGameController();
+  const { showHighScoreScreen, setShowHighScoreScreen } = useHighScoreMenu();
 
   //TODO highscore component
   //GAME WON VEYA LOST TIME'A GORE
-  if(gameWon && isHighScore){
-    
-    return(
-      <DialogueWrapper showHighScoreScreen={showHighScoreScreen} setShowHighScoreScreen={setShowHighScoreScreen}>
-      <h2>Misson Complete!</h2>
-      <ScoreInput />
-      
-     
-    </DialogueWrapper>
-    )
-  }else if(gameWon && isHighScore && !showHighScoreScreen){
+  if (gameWon) {
     return (
-      <DialogueWrapper >
-      <h2>Misson Complete!</h2>
+      <DialogueWrapper>
+        <h2>Misson Complete!</h2>
+        <ScoreInput
+          showHighScoreScreen={showHighScoreScreen}
+          setShowHighScoreScreen={setShowHighScoreScreen}
+        />
+        <ScoresList gameWon={gameWon} />
       </DialogueWrapper>
-    )
+    );
   }
-
-  return (
-    <DialogueWrapper >
-      <h2>Misson Complete!</h2>
-      
-    </DialogueWrapper>
-  )
 }
 const DialogueWrapper = styled.div`
   display: flex;
@@ -45,5 +31,4 @@ const DialogueWrapper = styled.div`
 `;
 const HighScoresWrapper = styled.div`
   display: grid;
-
-`
+`;

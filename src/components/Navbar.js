@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import useGameController from "../hooks/useGameController";
 import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
 import Timer from "./Timer";
 
-export default function Navbar({ imageList, isGameOver }) {
+export default function Navbar({ imageList }) {
   const [dropDownOpen, setDropDownOpen] = useToggle();
   const numberOfCharsToFind = imageList.itemList.filter(
     (item) => !item.found
@@ -17,7 +18,7 @@ export default function Navbar({ imageList, isGameOver }) {
           Where<RedListItem>Are</RedListItem>They?
         </StyledListItem>
         <StyledListItem>
-          <Timer isGameOver={isGameOver} />
+          <Timer />
         </StyledListItem>
         <ItemsToFind>
           <DropDownMenuToggleButton onClick={setDropDownOpen}>

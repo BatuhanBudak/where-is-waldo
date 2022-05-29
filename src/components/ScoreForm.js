@@ -6,9 +6,11 @@ export default function ScoreInput({showHighScoreScreen, setShowHighScoreScreen}
     const [name, setName] = useState();
     const {submitScore} = useFirebase();
 
-  function submitForm(){
+  function submitForm(e){
       //send score to database
+     e.preventDefault();
     setShowHighScoreScreen(false);
+    submitScore();
   }
   return (
       showHighScoreScreen && 

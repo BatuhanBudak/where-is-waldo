@@ -1,26 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import useTimer from '../hooks/useTimer';
 import { formatTime } from '../utils/FormatTime';
 
-export default function Timer({isGameOver}) {
+export default function Timer() {
   
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    
-    let interval;
-
-    if(!isGameOver){
-      interval = setInterval(() => setTime(time => time +1),1000);
-      console.log(time);
-    }
-    else if(isGameOver){
-      clearInterval(interval);
-      setTime(0);
-    }
-    return () => clearInterval(interval);
-
-  }, [isGameOver])
-
+  const {time}  = useTimer();
 
   return (
     <>{formatTime(time)}</>

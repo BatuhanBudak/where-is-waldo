@@ -9,7 +9,7 @@ import MainImage from "./components/MainImage";
 import useGameController from "./hooks/useGameController";
 export default function App() {
   
-  const {imageList,setImageList, modalOpen, modalMode, isGameOver} = useGameController();
+  const {imageList,setImageList, modalOpen, modalMode} = useGameController();
 
   const toggleCharacterFound = (id) => {
     setImageList((image) => {
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <StyledDiv>
-      <Navbar imageList={imageList} isGameOver={isGameOver} />
+      <Navbar imageList={imageList}  />
       <MainImage
         imageList={imageList}
         toggleCharacterFound={toggleCharacterFound}
