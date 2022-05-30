@@ -4,8 +4,8 @@ import locNar from "../assets/the-loc-nar.jpg";
 import useGameController from "../hooks/useGameController";
 import ItemToFindList from "./ItemToFindList";
 
-export default function StartDialogue({ imageList }) {
-  const { startGame } = useGameController();
+export default function StartDialogue() {
+  const { startGame, imageList } = useGameController();
   return (
     <>
       <StyledTitle>

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import useGameController from "../hooks/useGameController";
-import useHighScoreMenu from "../hooks/useHighScoreMenu";
 import ScoreInput from "./ScoreForm";
 import ScoresList from "./ScoresList";
 export default function EndDialogue() {
   const { gameWon } = useGameController();
-  const { showHighScoreScreen, setShowHighScoreScreen } = useHighScoreMenu();
 
   //TODO highscore component
   //GAME WON VEYA LOST TIME'A GORE
@@ -15,8 +13,7 @@ export default function EndDialogue() {
       <DialogueWrapper>
         <h2>Misson Complete!</h2>
         <ScoreInput
-          showHighScoreScreen={showHighScoreScreen}
-          setShowHighScoreScreen={setShowHighScoreScreen}
+         
         />
         <ScoresList gameWon={gameWon} />
       </DialogueWrapper>

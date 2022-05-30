@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import "./style.css";
 import Modal from "./components/Modal";
-import StartDialogue from "./components/StartDialogue";
-import EndDialogue from "./components/EndDialogue";
 import Navbar from "./components/Navbar";
 import MainImage from "./components/MainImage";
 import useGameController from "./hooks/useGameController";
 export default function App() {
-  
-  const {imageList,setImageList, modalOpen, modalMode} = useGameController();
+  const { setImageList, modalOpen } = useGameController();
 
   const toggleCharacterFound = (id) => {
     setImageList((image) => {
@@ -26,20 +23,9 @@ export default function App() {
 
   return (
     <StyledDiv>
-      <Navbar imageList={imageList}  />
-      <MainImage
-        imageList={imageList}
-        toggleCharacterFound={toggleCharacterFound}
-      />
-      {modalOpen && (
-        <Modal>
-          {modalMode === "start" ? (
-            <StartDialogue imageList={imageList}></StartDialogue>
-          ) : (
-            <EndDialogue></EndDialogue>
-          )}
-        </Modal>
-      )}
+      <Navbar />
+      <MainImage toggleCharacterFound={toggleCharacterFound} />
+      {modalOpen && <Modal />}
     </StyledDiv>
   );
 }

@@ -4,14 +4,14 @@ import useToggle from "./useToggle";
 import useTimer from "./useTimer";
 
 export default function useGameController() {
-    const [isGameOver, setIsGameOver] = useToggle(false);
-    const [imageList, setImageList] = useState(imagesData[0]);
-    const [modalOpen, toggleModalOpen] = useToggle(true);
-    const [modalMode, setModalMode] = useState("start");
-    const [isGameStarted, setisGameStarted] = useToggle(false);
-    const [foundItemsCount, setFoundItemsCount] = useState(0);
-    const [gameWon, setGameWon] = useState("");
-    let time, setTime;
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [imageList, setImageList] = useState(imagesData[0]);
+  const [modalOpen, toggleModalOpen] = useState(true);
+  const [modalMode, setModalMode] = useState("start");
+  const [isGameStarted, setisGameStarted] = useState(false);
+  const [foundItemsCount, setFoundItemsCount] = useState(0);
+
+  const { restartTime, setGameWon} = useTimer(isGameOver, isGameStarted);
 
   const startGame = () => {
     toggleModalOpen();
@@ -19,25 +19,26 @@ export default function useGameController() {
     setIsGameOver(false);
   };
   const restartGame = () => {
+    setGameWon("");
     setIsGameOver(false);
     setModalMode("start");
     setFoundItemsCount(0);
+    restartTime();
     setImageList(imagesData[0]);
-    // restartTime();
   };
 
   useEffect(() => {
-   
     async function endGame() {
+      // isGameWon();
       setIsGameOver(true);
       setisGameStarted(false);
       setModalMode("end");
       toggleModalOpen();
     }
-    if (foundItemsCount === 3 && !isGameOver ) {
+    if (foundItemsCount === 3 && !isGameOver && isGameStarted) {
       endGame();
     }
-  }, [foundItemsCount]);
+  }, [foundItemsCount, isGameOver, isGameStarted]);
 
   return {
     imageList,
@@ -48,7 +49,6 @@ export default function useGameController() {
     foundItemsCount,
     setFoundItemsCount,
     startGame,
-    gameWon,
     isGameStarted,
   };
 }

@@ -7,14 +7,14 @@ import useSnackbar from "../hooks/useSnackbar";
 import useFirebase from "../hooks/useFirebase";
 import useGameController from "../hooks/useGameController";
 
-export default function MainImage({ imageList, toggleCharacterFound }) {
+export default function MainImage({ toggleCharacterFound }) {
   const { x, y, showMenu, setShowMenu, handleMainImageClick } =
     useContextMenu();
   const [snackbarOpen, setSnackbarOpen, name, setName, found, setFound] =
     useSnackbar();
   const imageRef = useRef(null);
   const {getCoordsForCharacter} = useFirebase();
-  const {foundItemsCount,setFoundItemsCount} = useGameController();
+  const {imageList,foundItemsCount,setFoundItemsCount} = useGameController();
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
     const { imageWidth, imageHeight } = getImageSize();

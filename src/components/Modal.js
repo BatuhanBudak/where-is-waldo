@@ -1,10 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
+import useGameController from '../hooks/useGameController';
+import StartDialogue from './StartDialogue';
+import EndDialogue from './EndDialogue';
 
-export default function Modal({children}) {
-  return (
-    <StyledModal>{children}</StyledModal>
-  )
+export default function Modal() {
+ const {modalMode} = useGameController();
+  if(modalMode === "start"){
+    return  (<StyledModal><StartDialogue /></StyledModal>)
+  }
+  else if(modalMode === "end"){
+    return   (<StyledModal><EndDialogue /></StyledModal>)
+  }
 }
 const StyledModal = styled.div`
   position: fixed;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useTimer from '../hooks/useTimer';
 import { formatTime } from '../utils/FormatTime';
 

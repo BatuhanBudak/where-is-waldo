@@ -21,7 +21,7 @@ export default function useHighScoreMenu() {
     if (isGameOver) {
       checkForScore();
     }
-  }, [isGameOver]);
+  }, [isGameOver, checkForHighScore]);
 
   return { showHighScoreScreen, setShowHighScoreScreen, isHighScore };
 }

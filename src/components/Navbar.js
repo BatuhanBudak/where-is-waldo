@@ -5,8 +5,9 @@ import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
 import Timer from "./Timer";
 
-export default function Navbar({ imageList }) {
+export default function Navbar() {
   const [dropDownOpen, setDropDownOpen] = useToggle();
+  const { imageList } = useGameController();
   const numberOfCharsToFind = imageList.itemList.filter(
     (item) => !item.found
   ).length;
@@ -72,7 +73,7 @@ const ItemsToFind = styled.li`
 const DropDownMenuToggleButton = styled.button`
   width: 2.625rem;
   height: 2.625rem;
-  background-color: rgb(226,124,0);
+  background-color: rgb(226, 124, 0);
   cursor: pointer;
   color: white;
   border-radius: 50%;
