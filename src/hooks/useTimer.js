@@ -5,7 +5,18 @@ export default function useTimer(isGameOver, isGameStarted) {
   const [gameWon, setGameWon] = useState(false);
   const MAXTIME = 180;
 
-
+  
+  function startTimer(interval, isGameWon,isGameStarted) {
+    if (!isGameOver && isGameStarted) {
+      interval = setInterval(() => setTime((time) => time + 1), 1000);
+    } else if (isGameOver && !isGameStarted) {
+      isGameWon();
+      clearInterval(interval);
+    } else {
+      setTime(0);
+    }
+    return interval;
+  }
   const restartTime = () => {
     setTime(0);
   }
@@ -19,16 +30,11 @@ export default function useTimer(isGameOver, isGameStarted) {
         setGameWon(true);
       }
     }
-    if (!isGameOver && isGameStarted) {
-      interval = setInterval(() => setTime((time) => time + 1), 1000);
-    } else if (isGameOver && !isGameStarted) {
-      isGameWon();
-      clearInterval(interval);
-    }else{
-      setTime(0)
-    }
+    interval = startTimer(interval, isGameWon);
     return () => clearInterval(interval);
-  }, [isGameOver, isGameStarted, time]);
+  }, [isGameOver, isGameStarted]);
 
-  return  {time, restartTime, setGameWon, gameWon}
+  return  {time, restartTime, setGameWon, gameWon, startTimer}
+
+
 }

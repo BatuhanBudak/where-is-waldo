@@ -6,34 +6,49 @@ const CharactersContextMenu = ({
   x,
   y,
   showMenu,
-  itemList,
-  toggleCharacterFound,
+  imageList,
   checkCoordsForCharacter,
+  imageHeight,
+  imageWidth,
 }) => {
-  const NAVBARHEIGHT = 60;
-
-  //Decrement navbarheight since its position is fixed
-  const StyledContextMenuContainer = styled.div`
-    top: ${({ y }) => y - NAVBARHEIGHT + "px"};
-    left: ${({ x }) => x + "px"};
-    position: absolute;
-    display: ${({ showMenu }) => (showMenu ? "block" : "none")};
-    width: max-content;
-    height: auto;
-    max-width:150px;
-    max-height: 150px;
-  `;
-
   return (
-    <StyledContextMenuContainer showMenu={showMenu} x={x} y={y}>
+    <StyledContextMenuContainer
+      showMenu={showMenu}
+      x={x}
+      y={y}
+      imageWidth={imageWidth}
+      imageHeight={imageHeight}
+    >
       <ItemToFindList
-        itemList={itemList}
         isContextMenuItem={true}
-        toggleCharacterFound={toggleCharacterFound}
         checkCoordsForCharacter={checkCoordsForCharacter}
+        imageList={imageList}
       />
     </StyledContextMenuContainer>
   );
 };
 
+const MAXMENUHEIGHT = 100;
+const MAXMENUWIDTH = 100;
+const OFFSET = 5;
+
+const StyledContextMenuContainer = styled.div`
+  ${"" /* top: ${({ y }) => y - NAVBARHEIGHT + "px"}; */}
+  top: ${({ y, imageHeight }) =>
+    y + MAXMENUHEIGHT > imageHeight
+      ? y - (MAXMENUHEIGHT + OFFSET) + "px"
+      : y + "px"};
+
+  ${"" /* left: ${({ x }) => x + "px"}; */}
+  left: ${({ x, imageWidth }) =>
+    x + MAXMENUWIDTH > imageWidth
+      ? x - (MAXMENUWIDTH + OFFSET) + "px"
+      : x + "px"};
+  position: absolute;
+  display: ${({ showMenu }) => (showMenu ? "block" : "none")};
+  width: max-content;
+  height: auto;
+  max-width: 100px;
+  max-height: 100px;
+`;
 export default CharactersContextMenu;

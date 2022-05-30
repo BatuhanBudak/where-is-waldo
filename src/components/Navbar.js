@@ -1,31 +1,37 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import useGameController from "../hooks/useGameController";
 import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
 import Timer from "./Timer";
+import {TimeContext} from "./TimeContextProvider";
+import { GameControllerContext } from "./GameControllerProvider";
 
 export default function Navbar() {
   const [dropDownOpen, setDropDownOpen] = useToggle();
-  const { imageList } = useGameController();
-  const numberOfCharsToFind = imageList.itemList.filter(
-    (item) => !item.found
-  ).length;
 
+  const [numberOfCharsToFind, setNumberOfCharsToFind] = useState(0);
+  const {time} = useContext(TimeContext);
+  const {imageList} = useContext(GameControllerContext);
+  useEffect(() => {
+    function findNumberOfCharactersToFind() {
+      return imageList.itemList.filter((item) => !item.found).length;
+    }
+    setNumberOfCharsToFind(findNumberOfCharactersToFind());
+  }, [imageList]);
   return (
     <NavBar>
       <NavbarList>
         <StyledListItem>
           Where<RedListItem>Are</RedListItem>They?
         </StyledListItem>
-        <StyledListItem>
-          <Timer />
-        </StyledListItem>
+        <StyledTimerItem>
+          <Timer time={time} />
+        </StyledTimerItem>
         <ItemsToFind>
           <DropDownMenuToggleButton onClick={setDropDownOpen}>
             {numberOfCharsToFind}
           </DropDownMenuToggleButton>
-          {dropDownOpen && <DropDownMenu itemList={imageList.itemList} />}
+          {dropDownOpen && <DropDownMenu imageList={imageList}/>}
         </ItemsToFind>
       </NavbarList>
     </NavBar>
@@ -59,6 +65,9 @@ const StyledListItem = styled.li`
   font-size: 2rem;
   letter-spacing: 1px;
   color: white;
+`;
+const StyledTimerItem = styled(StyledListItem)`
+  width: 7.5rem;
 `;
 const RedListItem = styled.span`
   color: red;

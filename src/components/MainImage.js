@@ -1,23 +1,42 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import CharactersContextMenu from "./CharactersContextMenu";
-import useContextMenu from "../hooks/useContextMenu";
 import Snackbar from "./Snackbar";
 import useSnackbar from "../hooks/useSnackbar";
 import useFirebase from "../hooks/useFirebase";
-import useGameController from "../hooks/useGameController";
+import { GameControllerContext } from "./GameControllerProvider";
+import useToggle from "../hooks/useToggle";
 
-export default function MainImage({ toggleCharacterFound }) {
-  const { x, y, showMenu, setShowMenu, handleMainImageClick } =
-    useContextMenu();
+export default function MainImage() {
+ 
   const [snackbarOpen, setSnackbarOpen, name, setName, found, setFound] =
     useSnackbar();
   const imageRef = useRef(null);
-  const {getCoordsForCharacter} = useFirebase();
-  const {imageList,foundItemsCount,setFoundItemsCount} = useGameController();
+  const { getCoordsForCharacter } = useFirebase();
+  const { imageList, toggleCharacterFound,foundItemsCount, setFoundItemsCount } = useContext(
+    GameControllerContext
+  );
+  const [imageWidth, setImageWidth] = useState(0);
+  const [imageHeight, setImageHeight] = useState(0);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [showMenu, setShowMenu] = useToggle();
+
+  const handleMainImageClick = (e) => {
+    e.preventDefault();
+    getImageSize();
+    if (showMenu) {
+      setShowMenu();
+    } else {
+      setX(Number(e.pageX));
+      setY(Number(e.pageY));
+      setShowMenu();
+      console.log(x, y);
+    }
+  };
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
-    const { imageWidth, imageHeight } = getImageSize();
+    console.log(x, y);
     //Check if the coords are in range
     return (
       minX * imageWidth <= x &&
@@ -28,12 +47,8 @@ export default function MainImage({ toggleCharacterFound }) {
   };
 
   function getImageSize() {
-    const imageWidth = Number(
-      imageRef.current.getBoundingClientRect().width.toFixed(2)
-    );
-    const imageHeight = Number(
-      imageRef.current.getBoundingClientRect().height.toFixed(2)
-    );
+    setImageWidth(Number(imageRef.current.getBoundingClientRect().width));
+    setImageHeight(Number(imageRef.current.getBoundingClientRect().height));
     return { imageWidth, imageHeight };
   }
 
@@ -45,7 +60,7 @@ export default function MainImage({ toggleCharacterFound }) {
 
   function handleCharacterFound(id) {
     toggleCharacterFound(id);
-    setFoundItemsCount(foundItemsCount + 1 );
+    setFoundItemsCount(foundItemsCount + 1);
     setShowMenu();
     const characterName = getCharacterName(id);
     setName(characterName);
@@ -53,7 +68,8 @@ export default function MainImage({ toggleCharacterFound }) {
     setSnackbarOpen(true);
   }
 
-  async function checkCoordsForCharacter(id) {
+  async function checkCoordsForCharacter(e, id) {
+    e.stopPropagation();
     const coordinates = await getCoordsForCharacter(id);
 
     if (isCoordsInRange(coordinates)) {
@@ -72,14 +88,16 @@ export default function MainImage({ toggleCharacterFound }) {
         src={imageList.imageUrl}
         alt={imageList.imageAuthor}
         ref={imageRef}
-        onClick={(e) => handleMainImageClick(e, imageRef)}
+        onClick={(e) => handleMainImageClick(e)}
       />
       <CharactersContextMenu
         x={x}
         y={y}
         showMenu={showMenu}
-        itemList={imageList.itemList}
+        imageList={imageList}
         checkCoordsForCharacter={checkCoordsForCharacter}
+        imageHeight={imageHeight}
+        imageWidth={imageWidth}
       />
       {snackbarOpen && <Snackbar name={name} found={found} />}
     </StyledMain>
@@ -91,6 +109,6 @@ const StyledMain = styled.main`
 `;
 const StyledImage = styled.img`
   width: 100%;
-  display: block;
+  height: auto;
   margin-top: 3.75rem;
 `;

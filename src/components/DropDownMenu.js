@@ -2,10 +2,10 @@ import React from "react";
 import ItemToFindList from "./ItemToFindList";
 import styled from "styled-components";
 
-export default function DropDownMenu({ itemList }) {
+export default function DropDownMenu({imageList}) {
   return (
     <DropDownMenuContainer>
-      <ItemToFindList itemList={itemList} isDropDownMenuItem={true}/>
+      <ItemToFindList imageList= {imageList} isDropDownMenuItem={true}/>
     </DropDownMenuContainer>
   );
 }
