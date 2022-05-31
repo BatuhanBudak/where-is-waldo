@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import useFirebase from "../hooks/useFirebase";
-import useTimer from "../hooks/useTimer";
-import useHighScoreMenu from "../hooks/useHighScoreMenu";
-
-export default function ScoreInput() {
-  const [name, setName] = useState();
+import { TimeContext } from "./TimeContextProvider";
+export default function ScoreForm({showHighScoreScreen, toggleHighScoreScreen}) {
+  const [name, setName] = useState("");
   const { submitScore } = useFirebase();
-  const { showHighScoreScreen, setShowHighScoreScreen } = useHighScoreMenu();
-  const { time } = useTimer();
+  const [isSubmittingScore, setIsSubmittingScore] = useState(false);
+  const { time } = useContext(TimeContext);
 
   async function submitHighScore(e) {
     //send score to database
     e.preventDefault();
-    setShowHighScoreScreen(false);
     await submitScore(name, time);
+    toggleHighScoreScreen();
+  }
+  function handleChange(e){
+    setName(e.target.value)
   }
   return (
     showHighScoreScreen && (
@@ -26,7 +27,7 @@ export default function ScoreInput() {
             required
             placeholder="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange}
           />
           <button type="submit">Submit</button>
         </form>

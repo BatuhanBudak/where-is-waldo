@@ -1,10 +1,12 @@
 import {
   doc,
   getDoc,
+  getDocs,
   query,
   limit,
   orderBy,
   addDoc,
+  collection,
 } from "firebase/firestore/lite";
 import { db } from "../firebase/firebaseConfig";
 
@@ -16,9 +18,9 @@ export default function useFirebase() {
     return coordsObj;
   }
   async function getHighScoresFromDb() {
-    const collectionRef = doc(db, "scores");
-    const q = query(collectionRef, orderBy("score", "desc"), limit(10));
-    const scoresSnapshot = await getDoc(q);
+    const collectionRef = collection(db, "scores");
+    const q = query(collectionRef, orderBy("score", "asce"), limit(10));
+    const scoresSnapshot = await getDocs(q);
     scoresSnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
@@ -27,15 +29,16 @@ export default function useFirebase() {
     return scoresSnapshot;
   }
   async function checkForHighScore(score) {
-    const scoresSnapshot = getHighScoresFromDb();
-    return scoresSnapshot.doc.some(
-      (scoreItem) => scoreItem.data().score < score
+    const scoresSnapshot = await getHighScoresFromDb();
+    if(scoresSnapshot.docs.length < 10) return true;
+    return scoresSnapshot.docs.some(
+      (scoreItem) => scoreItem.data().score > score
     );
   }
   async function submitScore(name, score) {
     //TODO will write new high score to database
-    const collectionRef = doc(db, "scores");
-    await addDoc(collectionRef, { name: name, age: Number(score) });
+    const collectionRef = collection(db, "scores");
+    await addDoc(collectionRef, { name: name, score: Number(score) });
   }
 
   return {

@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import imagesData from "../imagesData";
 import useToggle from "../hooks/useToggle";
-// import useTimer from "./useTimer";
 
 let GameControllerContext = createContext();
 
@@ -17,7 +16,6 @@ function GameControllerProvider({ children }) {
     toggleModalOpen();
     setisGameStarted(true);
     setIsGameOver(false);
-    // startTimer(isGameOver, isGameStarted);
     setModalMode("start");
   };
   const restartGame = () => {
@@ -46,8 +44,8 @@ function GameControllerProvider({ children }) {
     async function endGame() {
       setIsGameOver(true);
       setisGameStarted(false);
-      toggleModalOpen();
       setModalMode("end");
+      toggleModalOpen();
     }
     if (foundItemsCount === 3 && !isGameOver && isGameStarted) {
       endGame();

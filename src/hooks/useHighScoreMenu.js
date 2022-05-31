@@ -1,26 +1,34 @@
 import { useContext, useEffect, useState } from "react";
-import  { GameControllerContext } from "../components/GameControllerProvider";
+import { GameControllerContext } from "../components/GameControllerProvider";
+import { TimeContext } from "../components/TimeContextProvider";
 import useFirebase from "./useFirebase";
 
 export default function useHighScoreMenu() {
   const [showHighScoreScreen, setShowHighScoreScreen] = useState(false);
-  const { isGameOver } = useContext(GameControllerContext);
-  const { checkForHighScore } = useFirebase();
   const [isHighScore, setIsHighScore] = useState(false);
+  const [hasCheckedScore, setHasCheckedScore] = useState(false);
+  const { isGameOver } = useContext(GameControllerContext);
+  const { time } = useContext(TimeContext);
+  const { checkForHighScore } = useFirebase();
+
+  function toggleHighScoreScreen() {
+    setShowHighScoreScreen((prev) => !prev);
+  }
 
   function handleScoreStatus(status) {
     setIsHighScore(status);
     setShowHighScoreScreen(status);
   }
   useEffect(() => {
-    async function checkForScore() {
-      const scoreStatus = await checkForHighScore();
+    async function checkForScore(time) {
+      const scoreStatus = await checkForHighScore(time);
       handleScoreStatus(scoreStatus);
     }
-    if (isGameOver) {
-      checkForScore();
+    if (isGameOver && !hasCheckedScore) {
+      checkForScore(time);
+      setHasCheckedScore(true);
     }
-  }, [isGameOver, checkForHighScore]);
+  }, [isGameOver, checkForHighScore, time, hasCheckedScore]);
 
-  return { showHighScoreScreen, setShowHighScoreScreen, isHighScore };
+  return { showHighScoreScreen, toggleHighScoreScreen, isHighScore };
 }

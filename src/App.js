@@ -12,9 +12,9 @@ export default function App() {
       <GameControllerProvider>
         <TimeContextProvider>
           <Navbar />
-        </TimeContextProvider>
         <MainImage />
         <Modal />
+        </TimeContextProvider>
       </GameControllerProvider>
     </StyledDiv>
   );
