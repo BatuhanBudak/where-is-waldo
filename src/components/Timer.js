@@ -4,7 +4,17 @@ import { formatTime } from '../utils/FormatTime';
 
 export default function Timer({time}) {
    
+  const COUNTDOWN = 10;
+
+  const holdAtZero = (time) => {
+    if(time <= 0){
+      return 0;
+    }else{
+      return time;
+    }
+  }
+
   return (
-    <>{formatTime(time)}</>
+    <>{formatTime(holdAtZero(COUNTDOWN-time))}</>
   )
 }

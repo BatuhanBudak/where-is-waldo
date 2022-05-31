@@ -11,6 +11,8 @@ function GameControllerProvider({ children }) {
   const [modalMode, setModalMode] = useState("start");
   const [isGameStarted, setisGameStarted] = useState(false);
   const [foundItemsCount, setFoundItemsCount] = useState(0);
+  const [gameWon, setGameWon] = useState(false);
+  
 
   const startGame = () => {
     toggleModalOpen();
@@ -49,10 +51,10 @@ function GameControllerProvider({ children }) {
     }
     if (foundItemsCount === 3 && !isGameOver && isGameStarted) {
       endGame();
-    }else if(isGameOver && isGameStarted){
-      //TODO ////////////////////////////
+    }else if(!gameWon && isGameOver && isGameStarted){
+      endGame();
     }
-  }, [foundItemsCount, isGameOver, isGameStarted, toggleModalOpen]);
+  }, [foundItemsCount, isGameOver, isGameStarted, toggleModalOpen,gameWon]);
 
   return (
     <GameControllerContext.Provider
@@ -66,6 +68,8 @@ function GameControllerProvider({ children }) {
         isGameStarted,
         foundItemsCount,
         setFoundItemsCount,
+        gameWon, setGameWon,
+        setIsGameOver
       }}
     >
       {children}

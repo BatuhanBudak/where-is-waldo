@@ -3,11 +3,13 @@ import styled from "styled-components";
 import ScoreForm from "./ScoreForm";
 import ScoresList from "./ScoresList";
 import { TimeContext } from "./TimeContextProvider";
+import { GameControllerContext } from "./GameControllerProvider";
 import { formatTime } from "../utils/FormatTime";
 import useHighScoreMenu from "../hooks/useHighScoreMenu";
 
 export default function EndDialogue() {
-  const { gameWon, time } = useContext(TimeContext);
+  const { time } = useContext(TimeContext);
+  const { gameWon,} = useContext(GameControllerContext);
   const { showHighScoreScreen, toggleHighScoreScreen, isHighScore } =
     useHighScoreMenu();
 

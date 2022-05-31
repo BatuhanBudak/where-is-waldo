@@ -5,29 +5,33 @@ let TimeContext = createContext();
 
 function TimeContextProvider({ children }) {
   const [time, setTime] = useState(0);
-  const [gameWon, setGameWon] = useState(false);
-  const MAXTIME = 500;
-  const { isGameOver, isGameStarted } = useContext(GameControllerContext);
+
+  const MAXTIME = 10;
+  const { isGameOver, isGameStarted, gameWon, setGameWon, setIsGameOver } =
+    useContext(GameControllerContext);
   useEffect(() => {
     let interval;
     const isGameWon = () => {
       if (time > MAXTIME) {
         setGameWon(false);
-      } else {
-        setGameWon(true);
-      }
+        setIsGameOver(true);
+      } 
     };
-    if (!isGameOver && isGameStarted) {
+    if (!isGameOver && isGameStarted && !gameWon) {
       interval = setInterval(() => setTime((time) => time + 1), 1000);
+      isGameWon();
+      //GameController sets the isGameStarted to false on game end
     } else if (isGameOver && !isGameStarted) {
       isGameWon();
+      clearInterval(interval);
+    } else if (!gameWon && isGameOver) {
       clearInterval(interval);
     } else {
       setTime(0);
       setGameWon(false);
     }
     return () => clearInterval(interval);
-  }, [isGameOver, isGameStarted, time]);
+  }, [isGameOver, isGameStarted, time, setGameWon, setIsGameOver, gameWon]);
 
   return (
     <TimeContext.Provider value={{ time, gameWon }}>
