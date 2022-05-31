@@ -6,7 +6,7 @@ let TimeContext = createContext();
 function TimeContextProvider({ children }) {
   const [time, setTime] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-  const MAXTIME = 180;
+  const MAXTIME = 500;
   const { isGameOver, isGameStarted } = useContext(GameControllerContext);
   useEffect(() => {
     let interval;

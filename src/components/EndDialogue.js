@@ -28,6 +28,7 @@ export default function EndDialogue() {
       <DialogueWrapper>
       <MissonStatusLabel gameWon={gameWon}>Misson Complete!</MissonStatusLabel>
       <ScoresList gameWon={gameWon} showHighScoreScreen={showHighScoreScreen}  />
+    <RestartButton>restart</RestartButton>
     </DialogueWrapper>
     );
   } else if (!gameWon) {
@@ -46,7 +47,8 @@ const DialogueWrapper = styled.div`
   display: flex;
   max-width: 45rem;
   max-height: 35rem;
-  padding: 5rem;
+  min-height: 300px;
+  padding: 3rem;
   border-radius: 20px;
   overflow: hidden;
   flex-direction: column;
@@ -63,17 +65,13 @@ font-weight: 500;
   color: ${(gameWon) => gameWon ? "limegreen" : "red"};
 `
 
-const HighScoresWrapper = styled.div`
-  display: grid;
-`;
 const RestartButton = styled.button`
   font-family: inherit;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   padding: 0.3em 1.25em;
   border: none;
-  border-radius: 1em;
   color: #fff;
   background: linear-gradient(to right, #ed213a, #93291e);
   transition: transform 0.3s ease;
@@ -81,4 +79,5 @@ const RestartButton = styled.button`
   &:focus {
     transform: scale(1.1);
   }
+  width: 100%;
 `;

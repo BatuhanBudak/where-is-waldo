@@ -49,6 +49,8 @@ function GameControllerProvider({ children }) {
     }
     if (foundItemsCount === 3 && !isGameOver && isGameStarted) {
       endGame();
+    }else if(isGameOver && isGameStarted){
+      //TODO ////////////////////////////
     }
   }, [foundItemsCount, isGameOver, isGameStarted, toggleModalOpen]);
 
