@@ -33,11 +33,11 @@ export default function ScoreForm({
             placeholder="Name"
             value={name}
             onChange={handleChange}
-            minlength = {3} 
-            maxLength = {5}
+            minlength={3}
+            maxLength={5}
           />
           <Label htmlFor="name">Name</Label>
-        <SubmitButton type="submit">Submit</SubmitButton>
+          <SubmitButton type="submit">Submit</SubmitButton>
         </Group>
       </section>
     )
@@ -74,7 +74,7 @@ const ScoreInput = styled.input`
   outline: 0;
   font-size: 1.3rem;
   color: #fff;
-  padding: .4rem 0;
+  padding: 0.4rem 0;
   background: transparent;
   transition: border-color 0.2s;
   &::placeholder {
@@ -122,4 +122,5 @@ const SubmitButton = styled.button`
     transform: scale(1.1);
   }
   margin-block: 1rem;
+  width: 100%;
 `;

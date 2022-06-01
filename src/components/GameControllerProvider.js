@@ -12,7 +12,6 @@ function GameControllerProvider({ children }) {
   const [isGameStarted, setisGameStarted] = useState(false);
   const [foundItemsCount, setFoundItemsCount] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-  
 
   const startGame = () => {
     toggleModalOpen();
@@ -20,15 +19,7 @@ function GameControllerProvider({ children }) {
     setIsGameOver(false);
     setModalMode("start");
   };
-  const restartGame = () => {
-    // setGameWon(false);
-    setIsGameOver(false);
-    setisGameStarted(false);
-    setModalMode("start");
-    setFoundItemsCount(0);
-    // restartTime();
-    setImageList(imagesData[0]);
-  };
+
   const toggleCharacterFound = (id) => {
     setImageList((image) => {
       const newItemList = image.itemList.map((item) => {
@@ -48,13 +39,14 @@ function GameControllerProvider({ children }) {
       setisGameStarted(false);
       setModalMode("end");
       toggleModalOpen();
+      setFoundItemsCount(0);
     }
     if (foundItemsCount === 3 && !isGameOver && isGameStarted) {
       endGame();
-    }else if(!gameWon && isGameOver && isGameStarted){
+    } else if (!gameWon && isGameOver && isGameStarted) {
       endGame();
     }
-  }, [foundItemsCount, isGameOver, isGameStarted, toggleModalOpen,gameWon]);
+  }, [foundItemsCount, isGameOver, isGameStarted, toggleModalOpen, gameWon]);
 
   return (
     <GameControllerContext.Provider
@@ -68,8 +60,9 @@ function GameControllerProvider({ children }) {
         isGameStarted,
         foundItemsCount,
         setFoundItemsCount,
-        gameWon, setGameWon,
-        setIsGameOver
+        gameWon,
+        setGameWon,
+        setIsGameOver,
       }}
     >
       {children}

@@ -1,14 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Snackbar({ found, name }) {
+export default function Snackbar({ found, name, warning }) {
   if (found) {
     return (
       <SnackbarContainer>
         <SnackbarTitle found={found}>You found {name}!</SnackbarTitle>
       </SnackbarContainer>
     );
-  } else {
+  }
+  else if(warning){
+    if(warning === "half"){
+      return (
+        <SnackbarContainer>
+          <SnackbarTitle found={found} warning= {warning} >Hurry Up!</SnackbarTitle>
+        </SnackbarContainer>
+      );
+    }else if(warning === "quarter"){
+      return (
+        <SnackbarContainer>
+          <SnackbarTitle  found={found} warning= {warning}>Time is fleeting!</SnackbarTitle>
+        </SnackbarContainer>
+      );
+    }
+  }
+   else {
     return (
       <SnackbarContainer>
         <SnackbarTitle found={found}>Try again!</SnackbarTitle>
@@ -26,6 +42,7 @@ const SnackbarContainer = styled.div`
 const SnackbarTitle = styled.h3`
   background-color: ${({ found }) => (found ? "green" : "red")};
   border-radius: 10px;
+  font-size: 1.2rem;
   font-family: "Nova Mono", monospace;
   color: white;
   transform: translateX(-50%);

@@ -3,15 +3,15 @@ import styled from "styled-components";
 import useToggle from "../hooks/useToggle";
 import DropDownMenu from "./DropDownMenu";
 import Timer from "./Timer";
-import {TimeContext} from "./TimeContextProvider";
+import { TimeContext } from "./TimeContextProvider";
 import { GameControllerContext } from "./GameControllerProvider";
 
 export default function Navbar() {
   const [dropDownOpen, setDropDownOpen] = useToggle();
 
   const [numberOfCharsToFind, setNumberOfCharsToFind] = useState(0);
-  const {time} = useContext(TimeContext);
-  const {imageList} = useContext(GameControllerContext);
+  const { time } = useContext(TimeContext);
+  const { imageList } = useContext(GameControllerContext);
   useEffect(() => {
     function findNumberOfCharactersToFind() {
       return imageList.itemList.filter((item) => !item.found).length;
@@ -31,7 +31,7 @@ export default function Navbar() {
           <DropDownMenuToggleButton onClick={setDropDownOpen}>
             {numberOfCharsToFind}
           </DropDownMenuToggleButton>
-          {dropDownOpen && <DropDownMenu imageList={imageList}/>}
+          {dropDownOpen && <DropDownMenu imageList={imageList} />}
         </ItemsToFind>
       </NavbarList>
     </NavBar>

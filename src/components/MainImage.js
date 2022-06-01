@@ -8,14 +8,16 @@ import { GameControllerContext } from "./GameControllerProvider";
 import useToggle from "../hooks/useToggle";
 
 export default function MainImage() {
- 
-  const [snackbarOpen, setSnackbarOpen, name, setName, found, setFound] =
+  const {snackbarOpen, setSnackbarOpen, name, setName, found, setFound} =
     useSnackbar();
   const imageRef = useRef(null);
   const { getCoordsForCharacter } = useFirebase();
-  const { imageList, toggleCharacterFound,foundItemsCount, setFoundItemsCount } = useContext(
-    GameControllerContext
-  );
+  const {
+    imageList,
+    toggleCharacterFound,
+    foundItemsCount,
+    setFoundItemsCount,
+  } = useContext(GameControllerContext);
   const [imageWidth, setImageWidth] = useState(0);
   const [imageHeight, setImageHeight] = useState(0);
   const [x, setX] = useState(0);

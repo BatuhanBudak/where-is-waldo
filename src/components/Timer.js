@@ -1,20 +1,37 @@
-import React, { } from 'react'
-import { formatTime } from '../utils/FormatTime';
-// import TimeContextCC from './TimeContextCC';
+import React, { useContext, useEffect } from "react";
+import useSnackbar from "../hooks/useSnackbar";
+import { formatTime } from "../utils/FormatTime";
+import { TimeContext } from "./TimeContextProvider";
+import Snackbar from "./Snackbar";
 
-export default function Timer({time}) {
-   
-  const COUNTDOWN = 10;
+
+export default function Timer({ time }) {
+  const { COUNTDOWN } = useContext(TimeContext);
+  const {warning, setWarning,snackbarOpen, setSnackbarOpen} = useSnackbar();
 
   const holdAtZero = (time) => {
-    if(time <= 0){
+    if (time <= 0) {
       return 0;
-    }else{
+    } else {
       return time;
     }
-  }
+  };
+  useEffect(() => {
+    
+      if(time === COUNTDOWN / 2){
+        setSnackbarOpen(true);
+        setWarning("half");
+      }
+      else if(time === COUNTDOWN / 4 * 3){
+        setSnackbarOpen(true);
+        setWarning("quarter");
+      }
+   
+   
+  },[time, COUNTDOWN,setSnackbarOpen,setWarning ])
 
-  return (
-    <>{formatTime(holdAtZero(COUNTDOWN-time))}</>
-  )
+  return (<>
+        {formatTime(holdAtZero(COUNTDOWN - time))}
+        {snackbarOpen && <Snackbar warning={warning} />}
+        </>)
 }

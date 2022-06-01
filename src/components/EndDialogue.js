@@ -9,39 +9,55 @@ import useHighScoreMenu from "../hooks/useHighScoreMenu";
 
 export default function EndDialogue() {
   const { time } = useContext(TimeContext);
-  const { gameWon,} = useContext(GameControllerContext);
+  const { gameWon, restartGame } = useContext(GameControllerContext);
   const { showHighScoreScreen, toggleHighScoreScreen, isHighScore } =
     useHighScoreMenu();
 
   if (gameWon && isHighScore) {
     return (
       <DialogueWrapper>
-        <MissonStatusLabel gameWon={gameWon}>Misson Complete!</MissonStatusLabel>
+        <MissonStatusLabel gameWon={gameWon}>
+          Misson Complete!
+        </MissonStatusLabel>
         <ScoreForm
           toggleHighScoreScreen={toggleHighScoreScreen}
           showHighScoreScreen={showHighScoreScreen}
         />
-        <ScoresList gameWon={gameWon} showHighScoreScreen={showHighScoreScreen} />
-        <RestartButton>restart</RestartButton>
+        <ScoresList
+          gameWon={gameWon}
+          showHighScoreScreen={showHighScoreScreen}
+        />
+        <RestartButton onClick={() => window.location.reload()}>
+          restart
+        </RestartButton>
       </DialogueWrapper>
     );
   } else if (gameWon && !isHighScore) {
-    return(
+    return (
       <DialogueWrapper>
-      <MissonStatusLabel gameWon={gameWon}>Misson Complete!</MissonStatusLabel>
-      <ScoresList gameWon={gameWon} showHighScoreScreen={showHighScoreScreen}  />
-    <RestartButton>restart</RestartButton>
-    </DialogueWrapper>
+        <MissonStatusLabel gameWon={gameWon}>
+          Misson Complete!
+        </MissonStatusLabel>
+        <ScoresList
+          gameWon={gameWon}
+          showHighScoreScreen={showHighScoreScreen}
+        />
+        <RestartButton onClick={() => window.location.reload()}>
+          restart
+        </RestartButton>
+      </DialogueWrapper>
     );
   } else if (!gameWon) {
-    return(
+    return (
       <DialogueWrapper>
-      <MissonStatusLabel gameWon={gameWon}>Misson Fail</MissonStatusLabel>
-      <h3>Your score: {formatTime(time)}</h3>
-      <h3>Try again?</h3>
-      <RestartButton>restart</RestartButton>
-    </DialogueWrapper>
-    )
+        <MissonStatusLabel gameWon={gameWon}>Misson Fail</MissonStatusLabel>
+        <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
+        <MissionFailTitles>Try again?</MissionFailTitles>
+        <RestartButton onClick={() => window.location.reload()}>
+          restart
+        </RestartButton>
+      </DialogueWrapper>
+    );
   }
 }
 
@@ -56,16 +72,23 @@ const DialogueWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  gap: .2rem;
-  background: linear-gradient(to bottom, #232526,#414345);
+  gap: 0.2rem;
+  background: linear-gradient(to bottom, #232526, #414345);
   font-family: "Oswald", sans-serif;
 `;
 const MissonStatusLabel = styled.h2`
-font-weight: 500;
+  font-weight: 500;
   letter-spacing: 2px;
   font-size: 2rem;
-  color: ${(gameWon) => gameWon ? "limegreen" : "red"};
-`
+  margin-block: 1rem;
+  color: ${({ gameWon }) => (gameWon ? "limegreen" : "red")};
+`;
+const MissionFailTitles = styled.h3`
+  margin-block: 1rem;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: white;
+`;
 
 const RestartButton = styled.button`
   font-family: inherit;

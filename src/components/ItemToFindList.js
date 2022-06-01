@@ -7,7 +7,7 @@ export default function ItemToFindList({
   isContextMenuItem = false,
   isDropDownMenuItem = false,
   isStartDialogueItem = false,
-  imageList
+  imageList,
 }) {
   const items = imageList.itemList.map((item) => (
     <ItemToFind
