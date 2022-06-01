@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import {StyledModal} from "../styledComponents/ModalStyles"
-import StartDialogue from "./StartDialogue";
 import EndDialogue from "./EndDialogue";
 import { GameControllerContext } from "./GameControllerProvider";
+import Carousel from "./Carousel";
 
 export default function Modal() {
-  const { imageList, modalMode, startGame, modalOpen } = useContext(
+  const { modalMode, modalOpen } = useContext(
     GameControllerContext
   );
 
   if (modalOpen && modalMode === "start") {
     return (
       <StyledModal>
-        <StartDialogue imageList={imageList} startGame={startGame} />
+        <Carousel />
       </StyledModal>
     );
   } else if (modalOpen && modalMode === "end") {

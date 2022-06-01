@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const DialogueWrapper = styled.div`
   display: flex;
   max-width: 45rem;
-  max-height: 35rem;
   min-height: 300px;
   padding: 3rem;
   border-radius: 20px;
@@ -26,9 +25,14 @@ export const MissionFailTitles = styled.h3`
   margin-block: 1rem;
   font-size: 1.3rem;
   letter-spacing: 1px;
+  color: gold;
+`;
+export const MissionFailQuestion = styled.h3`
+  margin-block: 1rem;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
   color: white;
 `;
-
 export const RestartButton = styled.button`
   font-family: inherit;
   cursor: pointer;

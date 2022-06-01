@@ -6,6 +6,7 @@ import MainImage from "./components/MainImage";
 import { TimeContextProvider } from "./components/TimeContextProvider";
 import { GameControllerProvider } from "./components/GameControllerProvider";
 import { HiddenDiv } from "./styledComponents/hiddenDiv";
+import Carousel from "./components/Carousel";
 
 export default function App() {
   return (

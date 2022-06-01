@@ -25,6 +25,7 @@ export const StartGridDiv = styled.div`
   h1:nth-child(4) {
     grid-area: e;
   }
+  justify-content: center;
 `;
 
 export const StyledTitle = styled.h1`
@@ -46,11 +47,10 @@ export const DialogueWrapper = styled.div`
   overflow: hidden;
   grid-area: c;
 `;
-export const BackgroundBlock = styled.div`
+export const BackgroundBlock = styled.img`
   width: 55%;
-  background-image: url(/static/media/the-loc-nar.314cec99f414807b7e27.jpg);
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const InfoContainer = styled.div`

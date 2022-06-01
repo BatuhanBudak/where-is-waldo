@@ -15,7 +15,7 @@ export default function ItemToFind({
   isStartDialogueItem,
   checkCoordsForCharacter,
 }) {
-  const { difficulty, image, imageName, name, franchise, found, id } = item;
+  const { difficulty, imageUrl, imageName, name, franchise, found, id } = item;
 
   if (isContextMenuItem) {
     return (
@@ -28,7 +28,7 @@ export default function ItemToFind({
       <DropDownMenuListItem>
         <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
         <CharacterInfo>
-          <StyledImage src={image} alt={imageName} found={found} />
+          <StyledImage src={imageUrl} alt={imageName} found={found} />
           <CharacterDetail found={found}>
             <CharacterName>{name}</CharacterName>
             <CharacterFranchise>{franchise}</CharacterFranchise>
@@ -41,7 +41,7 @@ export default function ItemToFind({
       <DropDownMenuListItem>
         <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
         <CharacterInfo>
-          <StyledImage src={image} alt={imageName} />
+          <StyledImage src={imageUrl} alt={imageName} />
           <CharacterDetail>
             <CharacterName>{name}</CharacterName>
             <CharacterFranchise>{franchise}</CharacterFranchise>

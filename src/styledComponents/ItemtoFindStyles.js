@@ -47,7 +47,7 @@ export const StyledImage = styled.img`
   width: 100%;
   max-height: 5rem;
   max-width: 5.5rem;
-  object-fit: cover;
+  object-fit: contain;
 `;
 export const CharacterDetail = styled.div`
   filter: ${({ found }) => {
@@ -71,7 +71,7 @@ export const CharacterName = styled.h3`
   font-weight: 400;
 `;
 export const CharacterFranchise = styled.h4`
-  font-size: 1rem;
-  letter-spacing: 2px;
+  font-size: .8rem;
   font-weight: 400;
+  letter-spacing: 0;
 `;

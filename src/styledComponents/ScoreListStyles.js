@@ -15,6 +15,7 @@ export const HighScoreLabel = styled.h3`
 export const ScoresOList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-block: .5rem;
   gap: 0.2rem;
   font-size: 1.2rem;
   list-style: none;

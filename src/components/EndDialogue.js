@@ -10,6 +10,7 @@ import {
   MissonStatusLabel,
   MissionFailTitles,
   RestartButton,
+  MissionFailQuestion
 } from "../styledComponents/endDialogueStyles";
 
 export default function EndDialogue() {
@@ -47,6 +48,7 @@ export default function EndDialogue() {
           gameWon={gameWon}
           showHighScoreScreen={showHighScoreScreen}
         />
+        <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
         <RestartButton onClick={() => window.location.reload()}>
           restart
         </RestartButton>
@@ -57,7 +59,7 @@ export default function EndDialogue() {
       <DialogueWrapper>
         <MissonStatusLabel gameWon={gameWon}>Misson Fail</MissonStatusLabel>
         <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
-        <MissionFailTitles>Try again?</MissionFailTitles>
+        <MissionFailQuestion>Try again?</MissionFailQuestion>
         <RestartButton onClick={() => window.location.reload()}>
           restart
         </RestartButton>

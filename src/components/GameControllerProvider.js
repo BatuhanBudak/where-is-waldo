@@ -13,7 +13,8 @@ function GameControllerProvider({ children }) {
   const [foundItemsCount, setFoundItemsCount] = useState(0);
   const [gameWon, setGameWon] = useState(false);
 
-  const startGame = () => {
+  const startGame = (image) => {
+    setImageList(image);
     toggleModalOpen();
     setisGameStarted(true);
     setIsGameOver(false);
