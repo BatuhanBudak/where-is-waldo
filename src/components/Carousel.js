@@ -25,6 +25,7 @@ export default function Carousel() {
       mouseTracking
       infinite
       disableButtonsControls
+      keyboardNavigation
       items={images}
       responsive={responsive}
     />

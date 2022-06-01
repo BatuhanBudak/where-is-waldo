@@ -16,6 +16,8 @@ export const StartGridDiv = styled.div`
   }
   h1:nth-child(2) {
     grid-area: a;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
   }
   h1:nth-child(3) {
     grid-area: d;
@@ -24,6 +26,8 @@ export const StartGridDiv = styled.div`
   }
   h1:nth-child(4) {
     grid-area: e;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
   justify-content: center;
 `;

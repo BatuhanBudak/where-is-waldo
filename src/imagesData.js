@@ -6,6 +6,7 @@ import universe113 from './assets/universe-113.jpg'
 import cacodemon from './assets/cacodemon.png';
 import billCipher from './assets/bill-cipher.png';
 import courage from './assets/courage.png';
+
 const imagesData = [
   {
     // The Loc Nar by Egor Klyuchnyk
