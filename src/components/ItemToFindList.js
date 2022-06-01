@@ -1,6 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import ItemToFind from "./ItemToFind";
+import {
+  ContextMenuCharactersList,
+  StartDialogueCharactersList,
+  DropDownCharactersList,
+} from "../styledComponents/ItemToFindListStyles";
 
 export default function ItemToFindList({
   checkCoordsForCharacter,
@@ -40,27 +44,3 @@ export default function ItemToFindList({
   } else if (isStartDialogueItem)
     return <StartDialogueCharactersList>{items}</StartDialogueCharactersList>;
 }
-
-const ContextMenuCharactersList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  font-family: "Nova Mono", monospace;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  justify-content: space-around;
-  border-radius: 10px;
-  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
-  color: black;
-  align-items: flex-start;
-`;
-const StartDialogueCharactersList = styled(ContextMenuCharactersList)`
-  background: none;
-  width: 100%;
-  color: black;
-`;
-const DropDownCharactersList = styled(ContextMenuCharactersList)`
-  background: none;
-  width: 100%;
-  color: white;
-`;

@@ -1,14 +1,15 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
+import React from "react";
 import "./style.css";
 import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
 import MainImage from "./components/MainImage";
 import { TimeContextProvider } from "./components/TimeContextProvider";
 import { GameControllerProvider } from "./components/GameControllerProvider";
+import { HiddenDiv } from "./styledComponents/hiddenDiv";
+
 export default function App() {
   return (
-    <StyledDiv>
+    <HiddenDiv>
       <GameControllerProvider>
         <TimeContextProvider>
           <Navbar />
@@ -16,9 +17,7 @@ export default function App() {
         <Modal />
         </TimeContextProvider>
       </GameControllerProvider>
-    </StyledDiv>
+    </HiddenDiv>
   );
 }
-const StyledDiv = styled.div`
-  overflow: hidden;
-`;
+

@@ -1,6 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-
+import {
+  SnackbarContainer,
+  SnackbarTitle,
+} from "../styledComponents/SnackbarStyles";
 export default function Snackbar({ found, name, warning }) {
   if (found) {
     return (
@@ -8,23 +10,25 @@ export default function Snackbar({ found, name, warning }) {
         <SnackbarTitle found={found}>You found {name}!</SnackbarTitle>
       </SnackbarContainer>
     );
-  }
-  else if(warning){
-    if(warning === "half"){
+  } else if (warning) {
+    if (warning === "half") {
       return (
         <SnackbarContainer>
-          <SnackbarTitle found={found} warning= {warning} >Hurry Up!</SnackbarTitle>
+          <SnackbarTitle found={found} warning={warning}>
+            Hurry Up!
+          </SnackbarTitle>
         </SnackbarContainer>
       );
-    }else if(warning === "quarter"){
+    } else if (warning === "quarter") {
       return (
         <SnackbarContainer>
-          <SnackbarTitle  found={found} warning= {warning}>Time is fleeting!</SnackbarTitle>
+          <SnackbarTitle found={found} warning={warning}>
+            Time is fleeting!
+          </SnackbarTitle>
         </SnackbarContainer>
       );
     }
-  }
-   else {
+  } else {
     return (
       <SnackbarContainer>
         <SnackbarTitle found={found}>Try again!</SnackbarTitle>
@@ -32,19 +36,3 @@ export default function Snackbar({ found, name, warning }) {
     );
   }
 }
-const SnackbarContainer = styled.div`
-  position: fixed;
-  top: 4.5rem;
-  left: 50%;
-  text-align: center;
-  width: max-content;
-`;
-const SnackbarTitle = styled.h3`
-  background-color: ${({ found }) => (found ? "green" : "red")};
-  border-radius: 10px;
-  font-size: 1.2rem;
-  font-family: "Nova Mono", monospace;
-  color: white;
-  transform: translateX(-50%);
-  padding: 0.5rem 1rem;
-`;

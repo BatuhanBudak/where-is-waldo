@@ -6,7 +6,7 @@ let TimeContext = createContext();
 function TimeContextProvider({ children }) {
   const [time, setTime] = useState(0);
 
-  const COUNTDOWN = 20;
+  const COUNTDOWN = 120;
   const { isGameOver, isGameStarted, gameWon, setGameWon, setIsGameOver } =
     useContext(GameControllerContext);
 
@@ -30,11 +30,7 @@ function TimeContextProvider({ children }) {
     } else if (!gameWon && isGameOver) {
       clearInterval(interval);
     }
-    // else if(!isGameOver && !isGameStarted && !gameWon)
-    //  {
-    //   setTime(0);
-    //   setGameWon(false);
-    // }
+
     return () => clearInterval(interval);
   }, [isGameOver, isGameStarted, time, setGameWon, setIsGameOver, gameWon]);
 

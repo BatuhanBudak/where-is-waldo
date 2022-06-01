@@ -1,7 +1,6 @@
 import ItemToFindList from "./ItemToFindList";
-import styled from "styled-components";
 import React from "react";
-
+import { StyledContextMenuContainer } from "../styledComponents/CharacterContextMenuStyles";
 const CharactersContextMenu = ({
   x,
   y,
@@ -28,27 +27,5 @@ const CharactersContextMenu = ({
   );
 };
 
-const MAXMENUHEIGHT = 100;
-const MAXMENUWIDTH = 100;
-const OFFSET = 5;
 
-const StyledContextMenuContainer = styled.div`
-  ${"" /* top: ${({ y }) => y - NAVBARHEIGHT + "px"}; */}
-  top: ${({ y, imageHeight }) =>
-    y + MAXMENUHEIGHT > imageHeight
-      ? y - (MAXMENUHEIGHT + OFFSET) + "px"
-      : y + "px"};
-
-  ${"" /* left: ${({ x }) => x + "px"}; */}
-  left: ${({ x, imageWidth }) =>
-    x + MAXMENUWIDTH > imageWidth
-      ? x - (MAXMENUWIDTH + OFFSET) + "px"
-      : x + "px"};
-  position: absolute;
-  display: ${({ showMenu }) => (showMenu ? "block" : "none")};
-  width: max-content;
-  height: auto;
-  max-width: 100px;
-  max-height: 100px;
-`;
 export default CharactersContextMenu;

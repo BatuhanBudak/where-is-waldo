@@ -1,14 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
-import styled from "styled-components";
 import CharactersContextMenu from "./CharactersContextMenu";
 import Snackbar from "./Snackbar";
 import useSnackbar from "../hooks/useSnackbar";
 import useFirebase from "../hooks/useFirebase";
 import { GameControllerContext } from "./GameControllerProvider";
 import useToggle from "../hooks/useToggle";
+import { StyledMain, StyledImage } from "../styledComponents/MainImageStyles";
 
 export default function MainImage() {
-  const {snackbarOpen, setSnackbarOpen, name, setName, found, setFound} =
+  const { snackbarOpen, setSnackbarOpen, name, setName, found, setFound } =
     useSnackbar();
   const imageRef = useRef(null);
   const { getCoordsForCharacter } = useFirebase();
@@ -105,12 +105,3 @@ export default function MainImage() {
     </StyledMain>
   );
 }
-
-const StyledMain = styled.main`
-  position: relative;
-`;
-const StyledImage = styled.img`
-  width: 100%;
-  height: auto;
-  margin-top: 3.75rem;
-`;

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import useFirebase from "../hooks/useFirebase";
 import { formatTime } from "../utils/FormatTime";
-import styled from "styled-components";
+import {
+  StyledSection,
+  HighScoreLabel,
+  ScoresOList,
+  ScoreListItem,
+  ScoreSpan,
+} from "../styledComponents/ScoreListStyles";
 
 export default function ScoresList({ gameWon, showHighScoreScreen }) {
   const [scores, setScores] = useState([]);
@@ -39,32 +45,3 @@ export default function ScoresList({ gameWon, showHighScoreScreen }) {
     )
   );
 }
-
-const StyledSection = styled.section`
-  margin-block: 0.5rem;
-  color: white;
-  width: 100%;
-`;
-const HighScoreLabel = styled.h3`
-  text-align: center;
-  font-size: 1.5rem;
-  border-bottom: 1px solid;
-  padding-bottom: 0.6rem;
-  color: gold;
-`;
-const ScoresOList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  font-size: 1.2rem;
-  list-style: none;
-  width: inherit;
-  color: white;
-`;
-const ScoreListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-`;
-const ScoreSpan = styled.span`
-  color: lime;
-`;

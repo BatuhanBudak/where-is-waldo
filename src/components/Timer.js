@@ -3,11 +3,11 @@ import useSnackbar from "../hooks/useSnackbar";
 import { formatTime } from "../utils/FormatTime";
 import { TimeContext } from "./TimeContextProvider";
 import Snackbar from "./Snackbar";
-
-
+import { ReactComponent as ClockIcon } from "../assets/clock.svg";
+import { StableSpan } from "../styledComponents/TimerStyles";
 export default function Timer({ time }) {
   const { COUNTDOWN } = useContext(TimeContext);
-  const {warning, setWarning,snackbarOpen, setSnackbarOpen} = useSnackbar();
+  const { warning, setWarning, snackbarOpen, setSnackbarOpen } = useSnackbar();
 
   const holdAtZero = (time) => {
     if (time <= 0) {
@@ -17,21 +17,20 @@ export default function Timer({ time }) {
     }
   };
   useEffect(() => {
-    
-      if(time === COUNTDOWN / 2){
-        setSnackbarOpen(true);
-        setWarning("half");
-      }
-      else if(time === COUNTDOWN / 4 * 3){
-        setSnackbarOpen(true);
-        setWarning("quarter");
-      }
-   
-   
-  },[time, COUNTDOWN,setSnackbarOpen,setWarning ])
+    if (time === COUNTDOWN / 2) {
+      setSnackbarOpen(true);
+      setWarning("half");
+    } else if (time === (COUNTDOWN / 4) * 3) {
+      setSnackbarOpen(true);
+      setWarning("quarter");
+    }
+  }, [time, COUNTDOWN, setSnackbarOpen, setWarning]);
 
-  return (<>
-        {formatTime(holdAtZero(COUNTDOWN - time))}
-        {snackbarOpen && <Snackbar warning={warning} />}
-        </>)
+  return (
+    <>
+      <ClockIcon />{" "}
+      <StableSpan>{formatTime(holdAtZero(COUNTDOWN - time))}</StableSpan>
+      {snackbarOpen && <Snackbar warning={warning} />}
+    </>
+  );
 }
