@@ -1,11 +1,14 @@
 import locNar from "./assets/the-loc-nar.jpg";
-import kelthuzad from "./assets/kelthuzad.png";
 import spiderman from "./assets/spiderman.png";
-import dragonborn from "./assets/dragonborn.png";
 import universe113 from './assets/universe-113.jpg' 
 import cacodemon from './assets/cacodemon.png';
 import billCipher from './assets/bill-cipher.png';
 import courage from './assets/courage.png';
+import homer from "./assets/homer.png"
+import kratos from "./assets/kratos.png"
+import geralt from "./assets/geralt.png"
+import spawn from "./assets/spawn.png"
+import noFace from "./assets/no-face.png"
 
 const imagesData = [
   {
@@ -20,18 +23,18 @@ const imagesData = [
     imageUrl: locNar,
     itemList: [
       {
-        id: "kel-thuzad",
-        name: "Kel'Thuzad",
-        franchise: "Warcraft",
-        imageUrl: kelthuzad,
+        id: "homer",
+        name: "Homer Simpson",
+        franchise: "Simpsons",
+        imageUrl: homer,
         difficulty: "easy",
         found: false,
       },
       {
-        id: "dragonborn",
-        name: "Dragonborn",
-        franchise: "Skyrim",
-        imageUrl: dragonborn,
+        id: "kratos",
+        name: "Kratos",
+        franchise: "God of War",
+        imageUrl: kratos,
         difficulty: "medium",
         found: false,
       },

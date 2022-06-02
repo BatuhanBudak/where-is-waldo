@@ -6,7 +6,7 @@ let TimeContext = createContext();
 function TimeContextProvider({ children }) {
   const [time, setTime] = useState(0);
 
-  const COUNTDOWN = 120;
+  const COUNTDOWN = 1120;
   const { isGameOver, isGameStarted, gameWon, setGameWon, setIsGameOver } =
     useContext(GameControllerContext);
 
