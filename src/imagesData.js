@@ -1,14 +1,11 @@
 import locNar from "./assets/the-loc-nar.jpg";
 import spiderman from "./assets/spiderman.png";
-import universe113 from './assets/universe-113.jpg' 
-import cacodemon from './assets/cacodemon.png';
-import billCipher from './assets/bill-cipher.png';
-import courage from './assets/courage.png';
-import homer from "./assets/homer.png"
-import kratos from "./assets/kratos.png"
-import geralt from "./assets/geralt.png"
-import spawn from "./assets/spawn.png"
-import noFace from "./assets/no-face.png"
+import universe113 from "./assets/universe-113.jpg";
+import homer from "./assets/homer.png";
+import kratos from "./assets/kratos.png";
+import geralt from "./assets/geralt.png";
+import spawn from "./assets/spawn.png";
+import noFace from "./assets/no-face.png";
 
 const imagesData = [
   {
@@ -56,36 +53,36 @@ const imagesData = [
       Patreon https://www.patreon.com/Egor
       Buy his poster https://anomaly-world.com/posters-by-anomaly-world/universe-113-poster
     */
-    id: 'universe-113',
-    imageName: 'Universe 113',
-    imageAuthor: 'Egor Klyuchnyk',
+    id: "universe-113",
+    imageName: "Universe 113",
+    imageAuthor: "Egor Klyuchnyk",
     imageUrl: universe113,
     itemList: [
       // Easy
       {
-        id: 'cacodemon',
-        name: 'Cacodemon',
-        franchise: 'DOOM',
-        imageUrl: cacodemon,
-        difficulty: 'easy',
+        id: "no-face",
+        name: "No-Face",
+        franchise: "Spirited Away",
+        imageUrl: noFace,
+        difficulty: "easy",
         found: false,
       },
       // Medium
       {
-        id: 'bill-cipher',
-        name: 'Bill Cipher',
-        franchise: 'Gravity Falls',
-        imageUrl: billCipher,
-        difficulty: 'medium',
+        id: "spawn",
+        name: "Spawn",
+        franchise: "The Spawn",
+        imageUrl: spawn,
+        difficulty: "medium",
         found: false,
       },
       // Hard
       {
-        id: 'courage',
-        name: 'Courage',
-        franchise: 'Courage the Cowardly Dog',
-        imageUrl: courage,
-        difficulty: 'hard',
+        id: "geralt",
+        name: "Geralt of Rivia",
+        franchise: "The Witcher",
+        imageUrl: geralt,
+        difficulty: "hard",
         found: false,
       },
     ],
