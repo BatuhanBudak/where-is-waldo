@@ -32,7 +32,8 @@ export const DropDownMenuListItem = styled.li`
 
 export const CharacterInfo = styled.div`
   align-self: flex-start;
-  display: flex;
+  display: grid;
+  grid-template-areas: "a b b" "a b b";
   align-items: center;
   justify-content: space-around;
   width: 100%;
@@ -48,6 +49,7 @@ export const StyledImage = styled.img`
   max-height: 5.5rem;
   max-width: 5.5rem;
   object-fit: scale-down;
+  grid-area: a;
 `;
 export const CharacterDetail = styled.div`
   filter: ${({ found }) => {
@@ -59,7 +61,7 @@ export const CharacterDetail = styled.div`
   text-decoration: ${({ found }) => {
     return found ? "line-through" : "none";
   }};
-
+  grid-area: b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,8 +69,10 @@ export const CharacterDetail = styled.div`
 `;
 export const CharacterName = styled.h3`
   font-size: 1.25rem;
-  letter-spacing: 2.5px;
+  letter-spacing: 0;
   font-weight: 400;
+  max-inline-size: 100px;
+  text-align: center;
 `;
 export const CharacterFranchise = styled.h4`
   font-size: .8rem;

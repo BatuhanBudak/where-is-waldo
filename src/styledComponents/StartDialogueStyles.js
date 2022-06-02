@@ -62,7 +62,7 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 45%;
+  width: 50%;
   padding-inline: 1rem;
   font-family: "Oswald", sans-serif;
   background: #c9d6ff; /* fallback for old browsers */
