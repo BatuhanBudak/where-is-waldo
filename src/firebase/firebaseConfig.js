@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore } from 'firebase/firestore/lite';
-import {setPersistence, getAuth, browserSessionPersistence, signInAnonymously, onAuthStateChanged } from "firebase/auth"
+import { getFirestore } from "firebase/firestore/lite";
+import {
+  setPersistence,
+  getAuth,
+  browserSessionPersistence,
+  signInAnonymously,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDylarFJ7CyNw2p8ZEtk3BU1x0BZ1gD9GI",
@@ -8,13 +14,11 @@ const firebaseConfig = {
   projectId: "where-is-waldo-e29a9",
   storageBucket: "where-is-waldo-e29a9.appspot.com",
   messagingSenderId: "1032231044384",
-  appId: "1:1032231044384:web:aeabf29e045eb945e10345"
+  appId: "1:1032231044384:web:aeabf29e045eb945e10345",
 };
 
 const app = initializeApp(firebaseConfig);
-
 export const db = getFirestore(app);
-
 const auth = getAuth();
 
 setPersistence(auth, browserSessionPersistence)
@@ -30,31 +34,21 @@ setPersistence(auth, browserSessionPersistence)
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode + '==>' + errorMessage);
+    console.log(errorCode + "==>" + errorMessage);
   });
 
-// signInAnonymously(auth)
-//   .then(() => {
-//     // Signed in..
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ...
-//   });
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    //isAnonymous
 
-      //isAnonymous 	
-
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      console.log(uid);
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    console.log(uid);
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});

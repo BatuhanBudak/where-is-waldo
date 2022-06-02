@@ -45,9 +45,9 @@ export const StyledImage = styled.img`
     }
   }};
   width: 100%;
-  max-height: 5rem;
+  max-height: 5.5rem;
   max-width: 5.5rem;
-  object-fit: contain;
+  object-fit: scale-down;
 `;
 export const CharacterDetail = styled.div`
   filter: ${({ found }) => {
