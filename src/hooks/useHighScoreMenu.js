@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { GameControllerContext } from "../components/GameControllerProvider";
-import { TimeContext } from "../components/TimeContextProvider";
+import { GameControllerContext } from "../components/context/GameControllerProvider";
+import { TimeContext } from "../components/context/TimeContextProvider";
 import useFirebase from "./useFirebase";
 
 export default function useHighScoreMenu() {

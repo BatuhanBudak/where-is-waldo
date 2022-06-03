@@ -65,7 +65,8 @@ export const CharacterDetail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  margin: .5rem;
 `;
 export const CharacterName = styled.h3`
   font-size: 1.25rem;

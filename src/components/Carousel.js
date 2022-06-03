@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { GameControllerContext } from "./GameControllerProvider";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import imagesData from "../imagesData";
 import StartDialogue from "./StartDialogue";
 

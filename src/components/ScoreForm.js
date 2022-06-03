@@ -7,7 +7,7 @@ import {
   ScoreInput,
   SubmitButton,
 } from "../styledComponents/ScoreFormStyles";
-import { TimeContext } from "./TimeContextProvider";
+import { TimeContext } from "./context/TimeContextProvider";
 export default function ScoreForm({
   showHighScoreScreen,
   toggleHighScoreScreen,

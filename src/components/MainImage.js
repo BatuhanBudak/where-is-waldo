@@ -3,7 +3,7 @@ import CharactersContextMenu from "./CharactersContextMenu";
 import Snackbar from "./Snackbar";
 import useSnackbar from "../hooks/useSnackbar";
 import useFirebase from "../hooks/useFirebase";
-import { GameControllerContext } from "./GameControllerProvider";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import useToggle from "../hooks/useToggle";
 import { StyledMain, StyledImage } from "../styledComponents/MainImageStyles";
 

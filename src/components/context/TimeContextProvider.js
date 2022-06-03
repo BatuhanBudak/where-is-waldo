@@ -29,6 +29,9 @@ function TimeContextProvider({ children }) {
       clearInterval(interval);
     } else if (!gameWon && isGameOver) {
       clearInterval(interval);
+    }else if(!isGameOver && !isGameStarted && !gameWon){
+      setTime(0);
+      clearInterval(interval);
     }
 
     return () => clearInterval(interval);

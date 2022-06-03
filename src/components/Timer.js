@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import useSnackbar from "../hooks/useSnackbar";
 import { formatTime } from "../utils/FormatTime";
-import { TimeContext } from "./TimeContextProvider";
+import { TimeContext } from "./context/TimeContextProvider";
 import Snackbar from "./Snackbar";
 import { ReactComponent as ClockIcon } from "../assets/clock.svg";
 import { StableSpan } from "../styledComponents/TimerStyles";

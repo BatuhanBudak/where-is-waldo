@@ -33,6 +33,7 @@ export const StyledTimerItem = styled(StyledListItem)`
   width: 10rem;
   display: flex;
   align-items: center;
+  cursor: default;
 `;
 export const RedListItem = styled.span`
   color: red;

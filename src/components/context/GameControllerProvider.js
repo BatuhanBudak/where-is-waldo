@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react";
-import imagesData from "../imagesData";
-import useToggle from "../hooks/useToggle";
+import imagesData from "../../imagesData";
+import useToggle from "../../hooks/useToggle";
 
 let GameControllerContext = createContext();
 
@@ -18,7 +18,6 @@ function GameControllerProvider({ children }) {
     toggleModalOpen();
     setisGameStarted(true);
     setIsGameOver(false);
-    setModalMode("start");
   };
 
   const toggleCharacterFound = (id) => {
@@ -33,6 +32,16 @@ function GameControllerProvider({ children }) {
       return { ...image, itemList: newItemList };
     });
   };
+
+  function restartGame() {
+    setModalMode("start");
+    toggleModalOpen(true);
+    setFoundItemsCount(0);
+    setImageList(imagesData[0]);
+    setisGameStarted(false);
+    setIsGameOver(false);
+    setGameWon(false);
+  }
 
   useEffect(() => {
     async function endGame() {
@@ -64,6 +73,7 @@ function GameControllerProvider({ children }) {
         gameWon,
         setGameWon,
         setIsGameOver,
+        restartGame,
       }}
     >
       {children}

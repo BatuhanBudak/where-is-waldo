@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import {StyledModal} from "../styledComponents/ModalStyles"
+import { StyledModal } from "../styledComponents/ModalStyles";
 import EndDialogue from "./EndDialogue";
-import { GameControllerContext } from "./GameControllerProvider";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import Carousel from "./Carousel";
 
 export default function Modal() {
-  const { modalMode, modalOpen } = useContext(GameControllerContext
-  );
+  const { modalMode, modalOpen } = useContext(GameControllerContext);
 
   if (modalOpen && modalMode === "start") {
     return (
@@ -22,4 +21,3 @@ export default function Modal() {
     );
   }
 }
-

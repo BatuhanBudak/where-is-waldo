@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import ScoreForm from "./ScoreForm";
 import ScoresList from "./ScoresList";
-import { TimeContext } from "./TimeContextProvider";
-import { GameControllerContext } from "./GameControllerProvider";
+import { TimeContext } from "./context/TimeContextProvider";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import { formatTime } from "../utils/FormatTime";
 import useHighScoreMenu from "../hooks/useHighScoreMenu";
 import {
@@ -15,7 +15,7 @@ import {
 
 export default function EndDialogue() {
   const { time } = useContext(TimeContext);
-  const { gameWon } = useContext(GameControllerContext);
+  const { gameWon, restartGame } = useContext(GameControllerContext);
   const { showHighScoreScreen, toggleHighScoreScreen, isHighScore } =
     useHighScoreMenu();
 
@@ -33,7 +33,7 @@ export default function EndDialogue() {
           gameWon={gameWon}
           showHighScoreScreen={showHighScoreScreen}
         />
-        <RestartButton onClick={() => window.location.reload()}>
+        <RestartButton onClick={restartGame}>
           restart
         </RestartButton>
       </DialogueWrapper>
@@ -49,7 +49,7 @@ export default function EndDialogue() {
           showHighScoreScreen={showHighScoreScreen}
         />
         <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
-        <RestartButton onClick={() => window.location.reload()}>
+        <RestartButton onClick={restartGame}>
           restart
         </RestartButton>
       </DialogueWrapper>
@@ -60,7 +60,7 @@ export default function EndDialogue() {
         <MissonStatusLabel gameWon={gameWon}>Misson Fail</MissonStatusLabel>
         <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
         <MissionFailQuestion>Try again?</MissionFailQuestion>
-        <RestartButton onClick={() => window.location.reload()}>
+        <RestartButton onClick={restartGame}>
           restart
         </RestartButton>
       </DialogueWrapper>
