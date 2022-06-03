@@ -7,6 +7,7 @@ import {
   ScoreInput,
   SubmitButton,
 } from "../styledComponents/ScoreFormStyles";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import { TimeContext } from "./context/TimeContextProvider";
 export default function ScoreForm({
   showHighScoreScreen,
@@ -15,11 +16,12 @@ export default function ScoreForm({
   const [name, setName] = useState("");
   const { submitScore } = useFirebase();
   const { time } = useContext(TimeContext);
+  const {imageList} = useContext(GameControllerContext);
 
   async function submitHighScore(e) {
     //send score to database
     e.preventDefault();
-    await submitScore(name, time);
+    await submitScore(name, time, imageList.id);
     toggleHighScoreScreen();
   }
   function handleChange(e) {
@@ -39,7 +41,7 @@ export default function ScoreForm({
             value={name}
             onChange={handleChange}
             minlength={3}
-            maxLength={5}
+            maxLength={8}
           />
           <Label htmlFor="name">Name</Label>
           <SubmitButton type="submit">Submit</SubmitButton>

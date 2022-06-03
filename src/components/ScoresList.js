@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useFirebase from "../hooks/useFirebase";
 import { formatTime } from "../utils/FormatTime";
+import { GameControllerContext } from "./context/GameControllerProvider";
 import {
   StyledSection,
   HighScoreLabel,
@@ -13,10 +14,11 @@ export default function ScoresList({ gameWon, showHighScoreScreen }) {
   const [scores, setScores] = useState([]);
   const [hasCheckedScore, setHasCheckedScore] = useState(false);
   const { getHighScoresFromDb } = useFirebase();
+  const {imageList} = useContext(GameControllerContext);
 
   useEffect(() => {
     async function getHighScores() {
-      const scores = await getHighScoresFromDb();
+      const scores = await getHighScoresFromDb(imageList.id);
       setScores(
         scores.docs.map((score) => ({ ...score.data(), id: score.id }))
       );
@@ -26,7 +28,7 @@ export default function ScoresList({ gameWon, showHighScoreScreen }) {
     if (gameWon && !hasCheckedScore && !showHighScoreScreen) {
       getHighScores();
     }
-  }, [gameWon, getHighScoresFromDb, hasCheckedScore, showHighScoreScreen]);
+  }, [gameWon, getHighScoresFromDb, hasCheckedScore, showHighScoreScreen, imageList.id]);
 
   const scoresList = scores.map((score, i) => {
     return (

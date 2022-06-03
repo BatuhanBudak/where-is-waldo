@@ -7,7 +7,7 @@ let GameControllerContext = createContext();
 function GameControllerProvider({ children }) {
   const [isGameOver, setIsGameOver] = useState(false);
   const [imageList, setImageList] = useState(imagesData[0]);
-  const [modalOpen, toggleModalOpen] = useToggle(true);
+  const [modalOpen, toggleModalOpen] = useState(true);
   const [modalMode, setModalMode] = useState("start");
   const [isGameStarted, setisGameStarted] = useState(false);
   const [foundItemsCount, setFoundItemsCount] = useState(0);
@@ -15,7 +15,7 @@ function GameControllerProvider({ children }) {
 
   const startGame = (image) => {
     setImageList(image);
-    toggleModalOpen();
+    toggleModalOpen(false);
     setisGameStarted(true);
     setIsGameOver(false);
   };
@@ -48,7 +48,7 @@ function GameControllerProvider({ children }) {
       setIsGameOver(true);
       setisGameStarted(false);
       setModalMode("end");
-      toggleModalOpen();
+      toggleModalOpen(true);
       setFoundItemsCount(0);
     }
     if (foundItemsCount === 3 && !isGameOver && isGameStarted) {

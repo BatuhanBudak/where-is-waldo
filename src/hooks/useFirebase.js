@@ -17,21 +17,21 @@ export default function useFirebase() {
     const coordsObj = coordsSnapshot.data();
     return coordsObj;
   }
-  async function getHighScoresFromDb() {
-    const collectionRef = collection(db, "scores");
+  async function getHighScoresFromDb(collectionID) {
+    const collectionRef = collection(db, `${collectionID}`);
     const q = query(collectionRef, orderBy("score", "asce"), limit(10));
     const scoresSnapshot = await getDocs(q);
     return scoresSnapshot;
   }
-  async function checkForHighScore(score) {
-    const scoresSnapshot = await getHighScoresFromDb();
+  async function checkForHighScore(collectionID, score) {
+    const scoresSnapshot = await getHighScoresFromDb(collectionID);
     if (scoresSnapshot.docs.length < 10) return true;
     return scoresSnapshot.docs.some(
       (scoreItem) => scoreItem.data().score > score
     );
   }
-  async function submitScore(name, score) {
-    const collectionRef = collection(db, "scores");
+  async function submitScore(name, score, collectionID) {
+    const collectionRef = collection(db, `${collectionID}`);
     await addDoc(collectionRef, { name: name, score: Number(score) });
   }
 

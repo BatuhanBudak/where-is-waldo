@@ -27,12 +27,20 @@ export default function Snackbar({ found, name, warning }) {
           </SnackbarTitle>
         </SnackbarContainer>
       );
+    } else if (warning === "hobbits") {
+      return (
+        <SnackbarContainer>
+          <SnackbarTitle found={found} warning={warning}>
+            They're taking hobbits to Isengard!
+          </SnackbarTitle>
+        </SnackbarContainer>
+      );
+    } else {
+      return (
+        <SnackbarContainer>
+          <SnackbarTitle found={found}>Try again!</SnackbarTitle>
+        </SnackbarContainer>
+      );
     }
-  } else {
-    return (
-      <SnackbarContainer>
-        <SnackbarTitle found={found}>Try again!</SnackbarTitle>
-      </SnackbarContainer>
-    );
   }
 }

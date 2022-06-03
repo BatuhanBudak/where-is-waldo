@@ -20,7 +20,11 @@ export default function Timer({ time }) {
     if (time === COUNTDOWN / 2) {
       setSnackbarOpen(true);
       setWarning("half");
-    } else if (time === (COUNTDOWN / 4) * 3) {
+    }else if (time === 2) {
+      setSnackbarOpen(true);
+      setWarning("hobbits");
+    } 
+    else if (time === (COUNTDOWN / 4) * 3) {
       setSnackbarOpen(true);
       setWarning("quarter");
     }

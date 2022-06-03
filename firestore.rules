@@ -4,17 +4,36 @@ service cloud.firestore {
 
     match /coordinates/{coordinate} {
       // Only authenticated users can read
-      allow read: if request.auth != null;
-      // Only the post author can write
-      write: false;
+      allow get: if request.auth != null;
+      allow write: if false;
     }
- 
-  } 
-  match /scores/{score} {
-    allow get: if request.auth != null;
-    allow list: if request.query.limit <= 11 && request.auth != null;
 
-    allow create: if (request.resource.data.keys().hasOnly(
-    ['name', 'score']) && request.auth != null && request.resource.data.name is string && request.resource.data.score is number );
-    update: false;
+
+    function authOrFields(){
+      return (request.resource.data.keys().hasOnly(
+      ['name', 'score']) && request.auth != null && request.resource.data.name is string && request.resource.data.score is number );
+    }
+    function requestAndTime(){
+      return request.query.limit <= 11 && request.auth != null;
+    }
+
+    match /the-loc-nar/{score}
+      {
+      allow get: if request.auth != null;
+      allow list: if requestAndTime();
+
+      allow create: if authOrFields();
+      allow update: if false;
+      allow delete: if false;
+    }
+    match /universe-113/{score}
+      {
+      allow get: if request.auth != null;
+      allow list: if requestAndTime();
+
+      allow create: if authOrFields();
+      allow update: if false;
+      allow delete: if false;
+    }
   }
+}

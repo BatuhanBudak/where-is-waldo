@@ -7,7 +7,7 @@ export default function useHighScoreMenu() {
   const [showHighScoreScreen, setShowHighScoreScreen] = useState(false);
   const [isHighScore, setIsHighScore] = useState(false);
   const [hasCheckedScore, setHasCheckedScore] = useState(false);
-  const { isGameOver } = useContext(GameControllerContext);
+  const { isGameOver, imageList } = useContext(GameControllerContext);
   const { time } = useContext(TimeContext);
   const { checkForHighScore } = useFirebase();
 
@@ -21,14 +21,14 @@ export default function useHighScoreMenu() {
   }
   useEffect(() => {
     async function checkForScore(time) {
-      const scoreStatus = await checkForHighScore(time);
+      const scoreStatus = await checkForHighScore(imageList.id, time);
       handleScoreStatus(scoreStatus);
     }
     if (isGameOver && !hasCheckedScore) {
       checkForScore(time);
       setHasCheckedScore(true);
     }
-  }, [isGameOver, checkForHighScore, time, hasCheckedScore]);
+  }, [isGameOver, checkForHighScore, time, hasCheckedScore,imageList.id]);
 
   return { showHighScoreScreen, toggleHighScoreScreen, isHighScore };
 }
