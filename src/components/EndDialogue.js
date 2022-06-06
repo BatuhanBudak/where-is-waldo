@@ -62,7 +62,7 @@ export default function EndDialogue() {
         <MissonStatusLabel gameWon={state.gameWon}>
           Misson Fail
         </MissonStatusLabel>
-        <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
+        <MissionFailTitles>Your score: lol you suck </MissionFailTitles>
         <MissionFailQuestion>Try again?</MissionFailQuestion>
         {restartButton}
       </DialogueWrapper>

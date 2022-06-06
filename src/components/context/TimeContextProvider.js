@@ -15,7 +15,7 @@ function TimeContextProvider({ children }) {
       if (time >= COUNTDOWN) {
         dispatch({ type: "loseGameByTime" });
       } else if (state.isGameOver && time < COUNTDOWN) {
-        dispatch({ type: "wonGame" });
+        dispatch({ type: "winGame" });
       }
     };
     if (!state.isGameOver && state.isGameStarted && !state.gameWon) {

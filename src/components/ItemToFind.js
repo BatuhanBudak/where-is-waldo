@@ -41,32 +41,8 @@ export default function ItemToFind({
       </ContextMenuListItem>
     );
   } else if (isDropDownMenuItem) {
-    return (
-      // <DropDownMenuListItem>
-      //   <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
-      //   <CharacterInfo>
-      //     <StyledImage src={imageUrl} alt={imageName} found={found} />
-      //     <CharacterDetail found={found}>
-      //       <CharacterName>{name}</CharacterName>
-      //       <CharacterFranchise>{franchise}</CharacterFranchise>
-      //     </CharacterDetail>
-      //   </CharacterInfo>
-      // </DropDownMenuListItem>
-      genericItem(found)
-    );
+    return genericItem(found);
   } else if (isStartDialogueItem) {
-    return (
-      // <DropDownMenuListItem>
-      //   <DifficultyLabel difficulty={difficulty}>{difficulty}</DifficultyLabel>
-      //   <CharacterInfo>
-      //     <StyledImage src={imageUrl} alt={imageName} />
-      //     <CharacterDetail>
-      //       <CharacterName>{name}</CharacterName>
-      //       <CharacterFranchise>{franchise}</CharacterFranchise>
-      //     </CharacterDetail>
-      //   </CharacterInfo>
-      // </DropDownMenuListItem>
-      genericItem()
-    );
+    return genericItem();
   }
 }

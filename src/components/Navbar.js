@@ -17,18 +17,8 @@ import { GameControllerContext } from "./context/GameControllerProvider";
 export default function Navbar() {
   const [dropDownOpen, setDropDownOpen] = useToggle();
 
-  
   const { time } = useContext(TimeContext);
-  const  [state, dispatch] = useContext(GameControllerContext);
-
-  // useEffect(() => {
-  //   function findNumberOfCharactersToFind() {
-  //     return state.imageList.itemList.filter((item) => !item.found).length;
-  //   }
-  //   if(state.isGameStarted){
-  //     setNumberOfCharsToFind(findNumberOfCharactersToFind());
-  //   }
-  // }, [state.foundItemsCount, state.imageList.itemList, state.isGameStarted]);
+  const [state, dispatch] = useContext(GameControllerContext);
 
   return (
     <NavBar>
