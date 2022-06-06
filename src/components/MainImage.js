@@ -38,7 +38,7 @@ export default function MainImage() {
   };
 
   const isCoordsInRange = ({ minX, maxX, minY, maxY }) => {
-    console.log(x, y);
+    
     //Check if the coords are in range
     return (
       minX * imageWidth <= x &&

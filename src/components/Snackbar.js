@@ -35,12 +35,14 @@ export default function Snackbar({ found, name, warning }) {
           </SnackbarTitle>
         </SnackbarContainer>
       );
-    } else {
+    } 
+    }
+    else {
       return (
         <SnackbarContainer>
           <SnackbarTitle found={found}>Try again!</SnackbarTitle>
         </SnackbarContainer>
       );
-    }
   }
+  
 }
