@@ -7,38 +7,36 @@ function TimeContextProvider({ children }) {
   const [time, setTime] = useState(0);
 
   const COUNTDOWN = 120;
-  const { isGameOver, isGameStarted, gameWon, setGameWon, setIsGameOver } =
-    useContext(GameControllerContext);
+  const [state, dispatch] = useContext(GameControllerContext);
 
   useEffect(() => {
     let interval;
     const isGameWon = () => {
       if (time >= COUNTDOWN) {
-        setGameWon(false);
-        setIsGameOver(true);
-      } else if (isGameOver && time < COUNTDOWN) {
-        setGameWon(true);
+        dispatch({ type: "loseGameByTime" });
+      } else if (state.isGameOver && time < COUNTDOWN) {
+        dispatch({ type: "wonGame" });
       }
     };
-    if (!isGameOver && isGameStarted && !gameWon) {
+    if (!state.isGameOver && state.isGameStarted && !state.gameWon) {
       interval = setInterval(() => setTime((time) => time + 1), 1000);
       isGameWon();
       //GameController sets the isGameStarted to false on game end
-    } else if (isGameOver && !isGameStarted) {
+    } else if (state.isGameOver && !state.isGameStarted) {
       isGameWon();
       clearInterval(interval);
-    } else if (!gameWon && isGameOver) {
+    } else if (!state.gameWon && state.isGameOver) {
       clearInterval(interval);
-    }else if(!isGameOver && !isGameStarted && !gameWon){
+    } else if (!state.isGameOver && !state.isGameStarted && !state.gameWon) {
       setTime(0);
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [isGameOver, isGameStarted, time, setGameWon, setIsGameOver, gameWon]);
+  }, [state.isGameOver, state.isGameStarted, time, state.gameWon, dispatch]);
 
   return (
-    <TimeContext.Provider value={{ time, gameWon, COUNTDOWN }}>
+    <TimeContext.Provider value={{ time, COUNTDOWN }}>
       {children}
     </TimeContext.Provider>
   );

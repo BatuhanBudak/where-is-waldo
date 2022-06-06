@@ -14,11 +14,11 @@ export default function ScoresList({ gameWon, showHighScoreScreen }) {
   const [scores, setScores] = useState([]);
   const [hasCheckedScore, setHasCheckedScore] = useState(false);
   const { getHighScoresFromDb } = useFirebase();
-  const {imageList} = useContext(GameControllerContext);
+  const [state] = useContext(GameControllerContext);
 
   useEffect(() => {
     async function getHighScores() {
-      const scores = await getHighScoresFromDb(imageList.id);
+      const scores = await getHighScoresFromDb(state.imageList.id);
       setScores(
         scores.docs.map((score) => ({ ...score.data(), id: score.id }))
       );
@@ -28,7 +28,13 @@ export default function ScoresList({ gameWon, showHighScoreScreen }) {
     if (gameWon && !hasCheckedScore && !showHighScoreScreen) {
       getHighScores();
     }
-  }, [gameWon, getHighScoresFromDb, hasCheckedScore, showHighScoreScreen, imageList.id]);
+  }, [
+    gameWon,
+    getHighScoresFromDb,
+    hasCheckedScore,
+    showHighScoreScreen,
+    state.imageList.id,
+  ]);
 
   const scoresList = scores.map((score, i) => {
     return (

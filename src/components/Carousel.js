@@ -6,7 +6,7 @@ import imagesData from "../imagesData";
 import StartDialogue from "./StartDialogue";
 
 export default function Carousel() {
-  const { startGame } = useContext(GameControllerContext);
+  const [state, dispatch] = useContext(GameControllerContext);
 
   const responsive = {
     0: { items: 1 },
@@ -16,7 +16,10 @@ export default function Carousel() {
 
   const images = imagesData.map((image) => {
     return (
-      <StartDialogue imageList={image} startGame={() => startGame(image)} />
+      <StartDialogue
+        imageList={image}
+        startGame={() => dispatch({ type: "startGame", by: image })}
+      />
     );
   });
 

@@ -16,12 +16,12 @@ export default function ScoreForm({
   const [name, setName] = useState("");
   const { submitScore } = useFirebase();
   const { time } = useContext(TimeContext);
-  const {imageList} = useContext(GameControllerContext);
+  const [state] = useContext(GameControllerContext);
 
   async function submitHighScore(e) {
     //send score to database
     e.preventDefault();
-    await submitScore(name, time, imageList.id);
+    await submitScore(name, time, state.imageList.id);
     toggleHighScoreScreen();
   }
   function handleChange(e) {

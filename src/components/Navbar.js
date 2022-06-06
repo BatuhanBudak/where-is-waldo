@@ -17,21 +17,23 @@ import { GameControllerContext } from "./context/GameControllerProvider";
 export default function Navbar() {
   const [dropDownOpen, setDropDownOpen] = useToggle();
 
-  const [numberOfCharsToFind, setNumberOfCharsToFind] = useState(0);
+  
   const { time } = useContext(TimeContext);
-  const { imageList, restartGame } = useContext(GameControllerContext);
-  
-  useEffect(() => {
-    function findNumberOfCharactersToFind() {
-      return imageList.itemList.filter((item) => !item.found).length;
-    }
-    setNumberOfCharsToFind(findNumberOfCharactersToFind());
-  }, [imageList]);
-  
+  const  [state, dispatch] = useContext(GameControllerContext);
+
+  // useEffect(() => {
+  //   function findNumberOfCharactersToFind() {
+  //     return state.imageList.itemList.filter((item) => !item.found).length;
+  //   }
+  //   if(state.isGameStarted){
+  //     setNumberOfCharsToFind(findNumberOfCharactersToFind());
+  //   }
+  // }, [state.foundItemsCount, state.imageList.itemList, state.isGameStarted]);
+
   return (
     <NavBar>
       <NavbarList>
-        <StyledListItem onClick={restartGame}>
+        <StyledListItem onClick={() => dispatch({ type: "restartGame" })}>
           GottaFindThem<RedListItem>All!</RedListItem>
         </StyledListItem>
         <StyledTimerItem>
@@ -39,9 +41,9 @@ export default function Navbar() {
         </StyledTimerItem>
         <ItemsToFind>
           <DropDownMenuToggleButton onClick={setDropDownOpen}>
-            {numberOfCharsToFind}
+            {state.itemsToFind}
           </DropDownMenuToggleButton>
-          {dropDownOpen && <DropDownMenu imageList={imageList} />}
+          {dropDownOpen && <DropDownMenu imageList={state.imageList} />}
         </ItemsToFind>
       </NavbarList>
     </NavBar>

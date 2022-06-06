@@ -5,15 +5,15 @@ import { GameControllerContext } from "./context/GameControllerProvider";
 import Carousel from "./Carousel";
 
 export default function Modal() {
-  const { modalMode, modalOpen } = useContext(GameControllerContext);
+  const [state]  = useContext(GameControllerContext);
 
-  if (modalOpen && modalMode === "start") {
+  if (state.modalOpen && state.modalMode === "start") {
     return (
       <StyledModal>
         <Carousel />
       </StyledModal>
     );
-  } else if (modalOpen && modalMode === "end") {
+  } else if (state.modalOpen && state.modalMode === "end") {
     return (
       <StyledModal>
         <EndDialogue />

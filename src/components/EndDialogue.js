@@ -10,19 +10,25 @@ import {
   MissonStatusLabel,
   MissionFailTitles,
   RestartButton,
-  MissionFailQuestion
+  MissionFailQuestion,
 } from "../styledComponents/endDialogueStyles";
 
 export default function EndDialogue() {
   const { time } = useContext(TimeContext);
-  const { gameWon, restartGame } = useContext(GameControllerContext);
+  const [state, dispatch]  = useContext(GameControllerContext);
   const { showHighScoreScreen, toggleHighScoreScreen, isHighScore } =
     useHighScoreMenu();
 
-  if (gameWon && isHighScore) {
+  const restartButton = (
+    <RestartButton onClick={() => dispatch({ type: "restartGame" })}>
+      restart
+    </RestartButton>
+  );
+
+  if (state.gameWon && isHighScore) {
     return (
       <DialogueWrapper>
-        <MissonStatusLabel gameWon={gameWon}>
+        <MissonStatusLabel gameWon={state.gameWon}>
           Misson Complete!
         </MissonStatusLabel>
         <ScoreForm
@@ -30,39 +36,35 @@ export default function EndDialogue() {
           showHighScoreScreen={showHighScoreScreen}
         />
         <ScoresList
-          gameWon={gameWon}
+          gameWon={state.gameWon}
           showHighScoreScreen={showHighScoreScreen}
         />
-        <RestartButton onClick={restartGame}>
-          restart
-        </RestartButton>
+        {restartButton}
       </DialogueWrapper>
     );
-  } else if (gameWon && !isHighScore) {
+  } else if (state.gameWon && !isHighScore) {
     return (
       <DialogueWrapper>
-        <MissonStatusLabel gameWon={gameWon}>
+        <MissonStatusLabel gameWon={state.gameWon}>
           Misson Complete!
         </MissonStatusLabel>
         <ScoresList
-          gameWon={gameWon}
+          gameWon={state.gameWon}
           showHighScoreScreen={showHighScoreScreen}
         />
         <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
-        <RestartButton onClick={restartGame}>
-          restart
-        </RestartButton>
+        {restartButton}
       </DialogueWrapper>
     );
-  } else if (!gameWon) {
+  } else if (!state.gameWon) {
     return (
       <DialogueWrapper>
-        <MissonStatusLabel gameWon={gameWon}>Misson Fail</MissonStatusLabel>
+        <MissonStatusLabel gameWon={state.gameWon}>
+          Misson Fail
+        </MissonStatusLabel>
         <MissionFailTitles>Your score: {formatTime(time)}</MissionFailTitles>
         <MissionFailQuestion>Try again?</MissionFailQuestion>
-        <RestartButton onClick={restartGame}>
-          restart
-        </RestartButton>
+        {restartButton}
       </DialogueWrapper>
     );
   }

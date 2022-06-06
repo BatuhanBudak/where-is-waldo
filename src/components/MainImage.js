@@ -12,12 +12,10 @@ export default function MainImage() {
     useSnackbar();
   const imageRef = useRef(null);
   const { getCoordsForCharacter } = useFirebase();
-  const {
-    imageList,
-    toggleCharacterFound,
-    foundItemsCount,
-    setFoundItemsCount,
-  } = useContext(GameControllerContext);
+  const [
+   state,
+   dispatch
+   ] = useContext(GameControllerContext);
   const [imageWidth, setImageWidth] = useState(0);
   const [imageHeight, setImageHeight] = useState(0);
   const [x, setX] = useState(0);
@@ -61,8 +59,10 @@ export default function MainImage() {
   }
 
   function handleCharacterFound(id) {
-    toggleCharacterFound(id);
-    setFoundItemsCount(foundItemsCount + 1);
+    // toggleCharacterFound(id);
+    dispatch({type: 'toggleCharacter', value:id});
+    dispatch({type: 'decrementItemsToFind'});
+    // setFoundItemsCount(foundItemsCount + 1);
     setShowMenu();
     const characterName = getCharacterName(id);
     setName(characterName);
@@ -81,14 +81,14 @@ export default function MainImage() {
     }
   }
   const getCharacterName = (id) => {
-    const character = imageList.itemList.filter((item) => item.id === id);
+    const character = state.imageList.itemList.filter((item) => item.id === id);
     return { ...character[0] }.name;
   };
   return (
     <StyledMain>
       <StyledImage
-        src={imageList.imageUrl}
-        alt={imageList.imageAuthor}
+        src={state.imageList.imageUrl}
+        alt={state.imageList.imageAuthor}
         ref={imageRef}
         onClick={(e) => handleMainImageClick(e)}
       />
@@ -96,7 +96,7 @@ export default function MainImage() {
         x={x}
         y={y}
         showMenu={showMenu}
-        imageList={imageList}
+        imageList={state.imageList}
         checkCoordsForCharacter={checkCoordsForCharacter}
         imageHeight={imageHeight}
         imageWidth={imageWidth}
