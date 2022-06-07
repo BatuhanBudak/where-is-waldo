@@ -66,7 +66,7 @@ export const CharacterDetail = styled.div`
   flex-direction: column;
   align-items: center;
   letter-spacing: 1px;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 export const CharacterName = styled.h3`
   font-size: 1.25rem;
@@ -76,7 +76,7 @@ export const CharacterName = styled.h3`
   text-align: center;
 `;
 export const CharacterFranchise = styled.h4`
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0;
 `;

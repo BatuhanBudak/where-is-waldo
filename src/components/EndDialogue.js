@@ -15,7 +15,7 @@ import {
 
 export default function EndDialogue() {
   const { time } = useContext(TimeContext);
-  const [state, dispatch]  = useContext(GameControllerContext);
+  const [state, dispatch] = useContext(GameControllerContext);
   const { showHighScoreScreen, toggleHighScoreScreen, isHighScore } =
     useHighScoreMenu();
 

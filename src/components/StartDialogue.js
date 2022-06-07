@@ -27,7 +27,7 @@ export default function StartDialogue({ imageList, startGame }) {
         <SpanWithMargin>l</SpanWithMargin>
       </StyledTitle>
       <DialogueWrapper>
-        <BackgroundBlock src={imageList.imageUrl} alt={imageList.imageAuthor}/>
+        <BackgroundBlock src={imageList.imageUrl} alt={imageList.imageAuthor} />
         <InfoContainer>
           <ImageDetailContainer>
             <ImageName>{imageList.imageName}</ImageName>

@@ -5,7 +5,7 @@ import { GameControllerContext } from "./context/GameControllerProvider";
 import Carousel from "./Carousel";
 
 export default function Modal() {
-  const [state]  = useContext(GameControllerContext);
+  const [state] = useContext(GameControllerContext);
 
   if (state.modalOpen && state.modalMode === "start") {
     return (

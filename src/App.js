@@ -13,11 +13,10 @@ export default function App() {
       <GameControllerProvider>
         <TimeContextProvider>
           <Navbar />
-        <MainImage />
-        <Modal />
+          <MainImage />
+          <Modal />
         </TimeContextProvider>
       </GameControllerProvider>
     </HiddenDiv>
   );
 }
-

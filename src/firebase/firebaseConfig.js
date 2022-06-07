@@ -37,7 +37,6 @@ setPersistence(auth, browserSessionPersistence)
     console.log(errorCode + "==>" + errorMessage);
   });
 
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     //isAnonymous

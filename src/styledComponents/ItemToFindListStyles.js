@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ContextMenuCharactersList = styled.ul`
   display: flex;

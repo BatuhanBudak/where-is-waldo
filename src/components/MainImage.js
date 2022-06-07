@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import CharactersContextMenu from "./CharactersContextMenu";
-import Snackbar from "./Snackbar";
 import { GameControllerContext } from "./context/GameControllerProvider";
 import { StyledMain, StyledImage } from "../styledComponents/MainImageStyles";
 
