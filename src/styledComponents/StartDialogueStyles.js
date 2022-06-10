@@ -46,8 +46,8 @@ export const SpanWithMargin = styled.span`
 
 export const DialogueWrapper = styled.div`
   display: flex;
-  width: 45rem;
-  height: 32rem;
+  max-width: 45rem;
+  max-height: 32rem;
   overflow: hidden;
   grid-area: c;
 `;
@@ -83,6 +83,7 @@ export const ImageName = styled.h2`
   font-weight: 500;
   letter-spacing: 3px;
   font-size: 2rem;
+  text-align: center;
 `;
 export const ImageAuthor = styled.h2`
   font-weight: 400;
@@ -90,6 +91,7 @@ export const ImageAuthor = styled.h2`
   margin-top: -0.25em;
   font-size: 0.875rem;
   font-style: italic;
+  text-align: center;
 `;
 
 export const StartButton = styled.button`
