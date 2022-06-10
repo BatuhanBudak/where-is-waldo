@@ -8,4 +8,5 @@ export const StyledImage = styled.img`
   display: block;
   height: auto;
   margin-top: 3.75rem;
+  
 `;

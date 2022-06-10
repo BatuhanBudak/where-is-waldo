@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 const MAXMENUHEIGHT = 100;
 const MAXMENUWIDTH = 100;
+const NAVBARHEIGHT = 60;
 const OFFSET = 5;
 
 export const StyledContextMenuContainer = styled.div`
   top: ${({ y, imageHeight }) =>
     y + MAXMENUHEIGHT > imageHeight
-      ? y - (MAXMENUHEIGHT + OFFSET) + "px"
-      : y + "px"};
+      ? y - (MAXMENUHEIGHT + OFFSET+ NAVBARHEIGHT) + "px"
+      : (y - NAVBARHEIGHT) + "px"};
 
   left: ${({ x, imageWidth }) =>
     x + MAXMENUWIDTH > imageWidth
